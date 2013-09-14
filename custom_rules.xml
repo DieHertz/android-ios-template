@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="custom_rules" default="debug">
+
+    <condition property="ndk.dir" value="${env.ANDROID_NDK}">
+        <isset property="env.ANDROID_NDK" />
+    </condition>
+
+    <fail
+            message="ndk.dir is missing. Make sure to add it to local.properties
+            or to inject it through the ANDROID_NDK environment variable."
+            unless="ndk.dir"
+    />
+
+    <target name="-pre-build">
+        <condition property="ndk.debug" value="1" else="0">
+            <equals arg1="${build.target}" arg2="debug" />
+        </condition>
+
+        <condition property="ndk.build" value="ndk-build.cmd" else="ndk-build">
+            <os family="windows" />
+        </condition>
+
+        <exec executable="${ndk.dir}/${ndk.build}" failonerror="true">
+            <arg value="-j8" />
+            <arg value="NDK_DEBUG=${ndk.debug}" />
+        </exec>
+    </target>
+
+    <target name="clean" depends="android_rules.clean">
+        <exec executable="${ndk.dir}/ndk-build" failonerror="true">
+            <arg value="clean" />
+        </exec>
+    </target>
+
+</project>
