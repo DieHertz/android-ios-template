@@ -35,7 +35,7 @@ class BasicView extends GLSurfaceView {
         }
 
         public void onSurfaceCreated(GL10 glUnused, EGLConfig config) {
-            NativeInterface.onCreate();
+            NativeInterface.onSurfaceCreated();
         }
 
     }

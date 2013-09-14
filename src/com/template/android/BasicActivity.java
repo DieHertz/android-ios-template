@@ -19,6 +19,7 @@ package com.template.android;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.view.KeyEvent;
 
 import java.io.File;
 
@@ -30,6 +31,9 @@ public class BasicActivity extends Activity {
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+
+        NativeInterface.onCreate();
+
         mView = new BasicView(getApplication());
         setContentView(mView);
     }
@@ -44,6 +48,15 @@ public class BasicActivity extends Activity {
     protected void onResume() {
         super.onResume();
         mView.onResume();
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+            switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                return NativeInterface.onBackPressed();
+
+            return super.onKeyUp(keyCode, event);
     }
 
 }

@@ -1,0 +1,3 @@
+Application should be an interface with default implementations for different actions
+like back button press, touch handling and other features.
+main.cpp must instantiate a class inherited from Application in onCreate.
