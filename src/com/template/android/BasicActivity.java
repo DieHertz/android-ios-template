@@ -25,10 +25,6 @@ import java.io.File;
 
 public class BasicActivity extends Activity {
 
-    static {
-        System.loadLibrary("template");
-    }
-
     private BasicView mView;
 
     @Override

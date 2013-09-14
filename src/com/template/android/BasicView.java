@@ -4,25 +4,41 @@ import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
-import android.opengl.GLES20;
+import javax.microedition.khronos.opengles.GL10;
+import javax.microedition.khronos.egl.EGLConfig;
 
 class BasicView extends GLSurfaceView {
 
-	public BasicView(Context context) {
-		super(context);
-		setEGLContextClientVersion(2);
-		setRenderer(new BasicRenderer(context));
-	}
+    public BasicView(Context context) {
+        super(context);
 
-	@Override
-	public boolean onTouchEvent(final MotionEvent event) {
-		queueEvent(new Runnable() {
-			public void run() {
-				NativeInterface.onTouchEvent(0, 0, 0);
-			}
-		});
+        setEGLConfigChooser(8, 8, 8, 0, 16, 0);
+        setEGLContextClientVersion(2);
+        setRenderer(new Renderer());
+        NativeInterface.onCreate();
+    }
 
-		return true;
-	}
+    @Override
+    public boolean onTouchEvent(final MotionEvent event) {
+        NativeInterface.onTouchEvent(0, 0, 0, 0);
+
+        return true;
+    }
+
+    private static class Renderer implements GLSurfaceView.Renderer {
+
+        public void onDrawFrame(GL10 glUnused) {
+            NativeInterface.onDrawFrame();
+        }
+
+        public void onSurfaceChanged(GL10 glUnused, int width, int height) {
+            NativeInterface.onSurfaceChanged(width, height);
+        }
+
+        public void onSurfaceCreated(GL10 glUnused, EGLConfig config) {
+            NativeInterface.onCreate();
+        }
+
+    }
 
 }

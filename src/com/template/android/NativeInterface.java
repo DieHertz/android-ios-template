@@ -2,10 +2,13 @@ package com.template.android;
 
 public class NativeInterface {
 
-	public native static void onCreate();
-	public native static void onDrawFrame();
-	public native static void onSurfaceChanged(int width, int height);
-	public native static void onSurfaceCreated();
-	public native static void onTouchEvent(int type, int x, int y);
+    static {
+        System.loadLibrary("template");
+    }
+
+    public static native void onCreate();
+    public static native void onSurfaceChanged(int width, int height);
+    public static native void onDrawFrame();
+    public static native void onTouchEvent(float x, float y, int type, int index);
 
 }

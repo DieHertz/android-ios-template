@@ -8,24 +8,21 @@ static Application application;
 
 extern "C" {
 
-JNIEXPORT void JNI_NAME(onCreate)() {
-	application.onCreate();
+JNIEXPORT void JNI_NAME(onCreate)(JNIEnv*, jclass) {
+    application.onCreate();
 }
 
-JNIEXPORT void JNI_NAME(onDrawFrame)() {
-	application.onUpdate();
-	application.onDraw();
+JNIEXPORT void JNI_NAME(onDrawFrame)(JNIEnv*, jclass) {
+    application.onUpdate();
+    application.onDraw();
 }
 
-JNIEXPORT void JNI_NAME(onSurfaceChanged)(int width, int height) {
-	application.onResize(width, height);
+JNIEXPORT void JNI_NAME(onSurfaceChanged)(JNIEnv*, jclass, jint width, jint height) {
+    application.onResize(width, height);
 }
 
-JNIEXPORT void JNI_NAME(onSurfaceCreated)() {
-}
-
-JNIEXPORT void JNI_NAME(onTouchEvent)(int x, int y, int type) {
-	application.onTouch(TouchEvent(x, y, TouchEvent::Down));
+JNIEXPORT void JNI_NAME(onTouchEvent)(JNIEnv*, jclass, jfloat x, jfloat y, jint type, jint index) {
+    application.onTouch(TouchEvent(x, y, TouchEvent::Down, index));
 }
 
 }

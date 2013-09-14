@@ -5,11 +5,11 @@
 
 class Application {
 public:
-	void onCreate();
-	void onResize(const int width, const int height);
-	void onUpdate();
-	void onDraw();
-	void onTouch(const TouchEvent& event);
+    void onCreate();
+    void onResize(const int width, const int height);
+    void onUpdate();
+    void onDraw();
+    void onTouch(const TouchEvent& event);
 };
 
 #endif /* Application_h */
