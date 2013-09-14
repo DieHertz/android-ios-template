@@ -1,7 +1,7 @@
 #ifndef RenderDevice_h
 #define RenderDevice_h
 
-#ifdef PLATFORM_ANDROID
+#ifdef __ANDROID__
 #include <GLES2/gl2.h>
 #else
 #include <OpenGL/gl.h>
