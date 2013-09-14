@@ -55,6 +55,7 @@ public class BasicActivity extends Activity {
             switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 return NativeInterface.onBackPressed();
+            }
 
             return super.onKeyUp(keyCode, event);
     }
