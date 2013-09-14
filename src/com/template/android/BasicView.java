@@ -15,7 +15,6 @@ class BasicView extends GLSurfaceView {
         setEGLConfigChooser(8, 8, 8, 0, 16, 0);
         setEGLContextClientVersion(2);
         setRenderer(new Renderer());
-        NativeInterface.onCreate();
     }
 
     @Override
