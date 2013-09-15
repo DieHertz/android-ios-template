@@ -17,14 +17,14 @@
     [_window release];
     [_viewController release];
     [_glView release];
-    delete app;
+    delete _application;
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    app = new Application();
-    app->onCreate();
+    _application = new Application();
+    _application->onCreate();
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     self.window = [[[UIWindow alloc] initWithFrame:screenBounds] autorelease];
@@ -33,7 +33,7 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
-    self.glView = [[[GLView alloc] initWithFrame:screenBounds application:app] autorelease];
+    self.glView = [[[GLView alloc] initWithFrame:screenBounds application:_application] autorelease];
     [self.window addSubview:_glView];
     
     return YES;

@@ -13,11 +13,8 @@ class Application;
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
-    Application *app;
+    Application *_application;
 }
-
-- (void)onContextCreated;
-- (void)onDraw;
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) ViewController *viewController;
