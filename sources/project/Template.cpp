@@ -43,6 +43,20 @@ void Template::onContextCreated() {
         "}"
     };
 
+    /*  ShaderProgram pointer should be reset in order to
+        force its destructor call.
+        Otherwise destructor will be called too late and
+        following situation may occur:
+        1. ShaderProgram pointed by pProgram has its OpenGL objects
+           invalidated.
+        2. New ShaderProgram is created, having the same values of
+           underlying OpenGL objects.
+        3. pProgram is assigned new value, calling destructor for old
+           ShaderProgram
+        4. Old ShaderProgram's destructor deletes the objects it no
+           longer owns, thus garbaging new ShaderProgram
+    */
+    pProgram.reset();
     pProgram = std::unique_ptr<ShaderProgram>(new ShaderProgram(vShaderSrc, fShaderSrc));
 
     positionLoc = pProgram->getAttribLocation("aPosition");

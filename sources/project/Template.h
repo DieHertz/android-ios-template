@@ -5,10 +5,10 @@
 
 class Template : public Application {
 public:
-    void onContextCreated();
-    void onResize(const int width, const int height);
-    void onDraw();
-    bool onBackPressed();
+    virtual void onContextCreated() override;
+    virtual void onResize(const int width, const int height) override;
+    virtual void onDraw() override;
+    virtual bool onBackPressed() override;
 };
 
 #endif /* Template_h */
