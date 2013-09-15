@@ -23,6 +23,7 @@
 		D6B1967917E5F94B0044515C /* GLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967417E5F94B0044515C /* GLView.mm */; };
 		D6B1967A17E5F94B0044515C /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967517E5F94B0044515C /* main.mm */; };
 		D6B1967B17E5F94B0044515C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967717E5F94B0044515C /* ViewController.m */; };
+		D6B4398A17E601DD00A82721 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4398817E601DD00A82721 /* ShaderProgram.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,8 @@
 		D6B1967517E5F94B0044515C /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = ../../sources/ios/main.mm; sourceTree = "<group>"; };
 		D6B1967617E5F94B0044515C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../../sources/ios/ViewController.h; sourceTree = "<group>"; };
 		D6B1967717E5F94B0044515C /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../../sources/ios/ViewController.m; sourceTree = "<group>"; };
+		D6B4398817E601DD00A82721 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderProgram.cpp; sourceTree = "<group>"; };
+		D6B4398917E601DD00A82721 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderProgram.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +141,8 @@
 		D66DBA2D17E5DD8B00C12B9C /* common */ = {
 			isa = PBXGroup;
 			children = (
+				D6B4398817E601DD00A82721 /* ShaderProgram.cpp */,
+				D6B4398917E601DD00A82721 /* ShaderProgram.h */,
 				D66DBA2E17E5DD8B00C12B9C /* Application.cpp */,
 				D66DBA2F17E5DD8B00C12B9C /* Application.h */,
 				D66DBA3017E5DD8B00C12B9C /* GlHelper.cpp */,
@@ -235,6 +240,7 @@
 				D6B1967917E5F94B0044515C /* GLView.mm in Sources */,
 				D6B1967A17E5F94B0044515C /* main.mm in Sources */,
 				D6B1967B17E5F94B0044515C /* ViewController.m in Sources */,
+				D6B4398A17E601DD00A82721 /* ShaderProgram.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
