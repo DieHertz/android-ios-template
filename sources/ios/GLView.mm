@@ -7,6 +7,7 @@
 //
 
 #import "GLView.h"
+#include "Application.h"
 
 @implementation GLView
 
@@ -14,7 +15,7 @@
     return [CAEAGLLayer class];
 }
 
-- (id)initWithFrame:(CGRect)frame application:(Application*)application
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -24,16 +25,16 @@
         [self setupRenderBuffer];
         [self setupFrameBuffer];
         [self setupDisplayLink];
-        _application = application;
-        application->onContextCreated();
-        application->onResize(frame.size.width, frame.size.height);
+        Application::getInstance()->onContextCreated();
+        Application::getInstance()->onResize(frame.size.width, frame.size.height);
     }
     return self;
 }
 
 - (void)render:(CADisplayLink*)displayLink {
 //    float dt = displayLink.duration;
-    _application->onDraw();
+    Application::getInstance()->onUpdate();
+    Application::getInstance()->onDraw();
     [_context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
@@ -43,8 +44,6 @@
 }
 
 - (void)setupDisplayLink {
-//    glViewport(0, 0, self.frame.size.width, self.frame.size.height);
-    
     CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self
                                                              selector:@selector(render:)];
     [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];

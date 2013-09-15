@@ -24,6 +24,9 @@
 		D6B1967A17E5F94B0044515C /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967517E5F94B0044515C /* main.mm */; };
 		D6B1967B17E5F94B0044515C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967717E5F94B0044515C /* ViewController.m */; };
 		D6B4398A17E601DD00A82721 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4398817E601DD00A82721 /* ShaderProgram.cpp */; };
+		D6EEB1E717E63B0800D06D2C /* RenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EEB1E617E63B0800D06D2C /* RenderDevice.cpp */; };
+		D6EEB1EC17E63B1C00D06D2C /* EntryPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EEB1E917E63B1C00D06D2C /* EntryPoint.cpp */; };
+		D6EEB1ED17E63B1C00D06D2C /* Template.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EEB1EA17E63B1C00D06D2C /* Template.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +60,11 @@
 		D6B1967717E5F94B0044515C /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../../sources/ios/ViewController.m; sourceTree = "<group>"; };
 		D6B4398817E601DD00A82721 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderProgram.cpp; sourceTree = "<group>"; };
 		D6B4398917E601DD00A82721 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderProgram.h; sourceTree = "<group>"; };
+		D6EEB1E517E63B0800D06D2C /* Gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gl.h; sourceTree = "<group>"; };
+		D6EEB1E617E63B0800D06D2C /* RenderDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderDevice.cpp; sourceTree = "<group>"; };
+		D6EEB1E917E63B1C00D06D2C /* EntryPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntryPoint.cpp; sourceTree = "<group>"; };
+		D6EEB1EA17E63B1C00D06D2C /* Template.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Template.cpp; sourceTree = "<group>"; };
+		D6EEB1EB17E63B1C00D06D2C /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +140,7 @@
 		D66DBA2C17E5DD5100C12B9C /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D6EEB1E817E63B1C00D06D2C /* project */,
 				D66DBA2D17E5DD8B00C12B9C /* common */,
 				D625798C16C403CD008C223F /* ios */,
 			);
@@ -141,6 +150,9 @@
 		D66DBA2D17E5DD8B00C12B9C /* common */ = {
 			isa = PBXGroup;
 			children = (
+				D6EEB1E517E63B0800D06D2C /* Gl.h */,
+				D66DBA3517E5DD8B00C12B9C /* RenderDevice.h */,
+				D6EEB1E617E63B0800D06D2C /* RenderDevice.cpp */,
 				D6B4398817E601DD00A82721 /* ShaderProgram.cpp */,
 				D6B4398917E601DD00A82721 /* ShaderProgram.h */,
 				D66DBA2E17E5DD8B00C12B9C /* Application.cpp */,
@@ -150,7 +162,6 @@
 				D66DBA3217E5DD8B00C12B9C /* Log.h */,
 				D66DBA3317E5DD8B00C12B9C /* LogAndroid.h */,
 				D66DBA3417E5DD8B00C12B9C /* LogIos.h */,
-				D66DBA3517E5DD8B00C12B9C /* RenderDevice.h */,
 				D66DBA3617E5DD8B00C12B9C /* TouchEvent.cpp */,
 				D66DBA3717E5DD8B00C12B9C /* TouchEvent.h */,
 			);
@@ -167,6 +178,17 @@
 			);
 			path = res;
 			sourceTree = SOURCE_ROOT;
+		};
+		D6EEB1E817E63B1C00D06D2C /* project */ = {
+			isa = PBXGroup;
+			children = (
+				D6EEB1E917E63B1C00D06D2C /* EntryPoint.cpp */,
+				D6EEB1EA17E63B1C00D06D2C /* Template.cpp */,
+				D6EEB1EB17E63B1C00D06D2C /* Template.h */,
+			);
+			name = project;
+			path = ../../sources/project;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -241,6 +263,9 @@
 				D6B1967A17E5F94B0044515C /* main.mm in Sources */,
 				D6B1967B17E5F94B0044515C /* ViewController.m in Sources */,
 				D6B4398A17E601DD00A82721 /* ShaderProgram.cpp in Sources */,
+				D6EEB1E717E63B0800D06D2C /* RenderDevice.cpp in Sources */,
+				D6EEB1EC17E63B1C00D06D2C /* EntryPoint.cpp in Sources */,
+				D6EEB1ED17E63B1C00D06D2C /* Template.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,15 +340,18 @@
 		D62579A716C403CD008C223F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "template-Prefix.pch";
 				INFOPLIST_FILE = "template-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-I../../sources/common";
 				PRODUCT_NAME = template;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -331,15 +359,18 @@
 		D62579A816C403CD008C223F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "template-Prefix.pch";
 				INFOPLIST_FILE = "template-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-I../../sources/common";
 				PRODUCT_NAME = template;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -13,7 +13,6 @@ class Application;
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
-    Application *_application;
 }
 
 @property (strong, nonatomic) UIWindow *window;

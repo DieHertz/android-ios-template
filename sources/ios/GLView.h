@@ -17,9 +17,8 @@
     EAGLContext *_context;
     GLuint _colorRenderBuffer;
     GLuint _depthRenderBuffer;
-    Application *_application;
 }
 
-- (id)initWithFrame:(CGRect)frame application:(Application*)application;
+- (id)initWithFrame:(CGRect)frame;
 
 @end
