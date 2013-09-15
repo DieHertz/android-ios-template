@@ -22,10 +22,10 @@ $RECYCLE.BIN/
 
 # Xcode shit
 *.xcuserstate
+*.xcworkspacedata
 xcuserdata
 *.swp
 *~.nib
-build/
 
 # Ant build artifacts
 out
