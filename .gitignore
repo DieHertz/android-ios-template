@@ -20,9 +20,17 @@ $RECYCLE.BIN/
 # Mac crap
 .DS_Store
 
+# Xcode shit
+*.xcuserstate
+xcuserdata
+*.swp
+*~.nib
+build/
+
 # Ant build artifacts
 out
 obj
 libs
 bin
 gen
+
