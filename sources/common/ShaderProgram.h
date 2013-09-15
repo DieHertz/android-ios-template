@@ -1,7 +1,7 @@
 #ifndef ShaderProgram_h
 #define ShaderProgram_h
 
-#include "RenderDevice.h"
+#include "Gl.h"
 
 #include <string>
 
@@ -10,9 +10,11 @@ public:
     ShaderProgram(const std::string& vSrc, const std::string& fSrc);
     ~ShaderProgram();
 
-    void use();
+    void use() const;
 
     GLuint get() const;
+    GLint getAttribLocation(const char* attribName) const;
+    GLint getUniformLocation(const char* uniformName) const;
 
 private:
     GLuint mVertexShader;

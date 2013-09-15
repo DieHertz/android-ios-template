@@ -14,10 +14,18 @@ ShaderProgram::~ShaderProgram() {
     glDeleteShader(mVertexShader);
 }
 
-void ShaderProgram::use() {
+void ShaderProgram::use() const {
     glUseProgram(mProgram);
 }
 
 GLuint ShaderProgram::get() const {
     return mProgram;
+}
+
+GLint ShaderProgram::getAttribLocation(const char* attribName) const {
+    return glGetAttribLocation(mProgram, attribName);
+}
+
+GLint ShaderProgram::getUniformLocation(const char* uniformName) const {
+    return glGetUniformLocation(mProgram, uniformName);
 }

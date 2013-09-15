@@ -1,38 +1,41 @@
+#include "Application.h"
+#include "TouchEvent.h"
+
 #include <jni.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define JNI_NAME(name) Java_com_template_android_NativeInterface_##name
 
-#include "Application.h"
-
-static Application application;
-
-extern "C" {
-
 JNIEXPORT void JNI_NAME(onCreate)(JNIEnv*, jclass) {
-    application.onCreate();
+    Application::getInstance()->onCreate();
 }
 
 JNIEXPORT void JNI_NAME(onSurfaceCreated)(JNIEnv*, jclass) {
-    application.onContextCreated();
+    Application::getInstance()->onContextCreated();
 }
 
 JNIEXPORT void JNI_NAME(onSurfaceChanged)(JNIEnv*, jclass, jint width, jint height) {
-    application.onResize(width, height);
+    Application::getInstance()->onResize(width, height);
 }
 
 JNIEXPORT void JNI_NAME(onDrawFrame)(JNIEnv*, jclass) {
-    application.onUpdate();
-    application.onDraw();
+    Application::getInstance()->onUpdate();
+    Application::getInstance()->onDraw();
 }
 
 JNIEXPORT void JNI_NAME(onTouchEvent)(JNIEnv*, jclass, jfloat x, jfloat y, jint type, jint index) {
-    application.onTouch(TouchEvent(x, y, TouchEvent::Down, index));
+    Application::getInstance()->onTouch(TouchEvent(x, y, TouchEvent::Down, index));
 }
 
 JNIEXPORT jboolean JNI_NAME(onBackPressed)(JNIEnv*, jclass) {
-    return application.onBackPressed();
+    return Application::getInstance()->onBackPressed();
 }
 
+#ifdef __cplusplus
 }
+#endif
 
 #undef JNI_NAME

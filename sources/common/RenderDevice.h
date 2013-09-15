@@ -1,10 +1,18 @@
 #ifndef RenderDevice_h
 #define RenderDevice_h
 
-#ifdef __ANDROID__
-#include <GLES2/gl2.h>
-#else
-#include <OpenGLES/ES2/gl.h>
-#endif
+class ShaderProgram;
+
+class RenderDevice {
+    RenderDevice() = delete;
+    RenderDevice(const RenderDevice&) = delete;
+
+public:
+    static void clearColor(const float r, const float g, const float b, const float a);
+    static void clear();
+    static void viewport(const float x, const float y, const float w, const float h);
+
+    static void begin(const ShaderProgram& program);
+};
 
 #endif /* RenderDevice_h */

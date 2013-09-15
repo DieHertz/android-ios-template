@@ -1,7 +1,7 @@
 #ifndef GlHelper_h
 #define GlHelper_h
 
-#include "RenderDevice.h"
+#include "Gl.h"
 
 class GlHelper {
     GlHelper() = delete;

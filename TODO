@@ -1,3 +1,5 @@
-Application should be an interface with default implementations for different actions
-like back button press, touch handling and other features.
-main.cpp must instantiate a class inherited from Application in onCreate.
++ Application should be an interface with default implementations for different actions like back button press, touch handling and other features.
++ main.cpp must instantiate a class inherited from Application in onCreate.
+- Implement Timer class with following interface: update(), reset(), float elapsed().
+- Use previously implemented Timer inside Application::onUpdate to call Application::onUpdate(float) with Timer::elapsed time, allowing FPS-independent calculations.
+- RenderDevice should store current model, view and projections matrices and allow modifying them (use GLM for these purposes).
