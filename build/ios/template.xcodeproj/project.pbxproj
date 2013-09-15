@@ -15,14 +15,14 @@
 		D66DBA3817E5DD8B00C12B9C /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66DBA2E17E5DD8B00C12B9C /* Application.cpp */; };
 		D66DBA3917E5DD8B00C12B9C /* GlHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66DBA3017E5DD8B00C12B9C /* GlHelper.cpp */; };
 		D66DBA3A17E5DD8B00C12B9C /* TouchEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66DBA3617E5DD8B00C12B9C /* TouchEvent.cpp */; };
-		D67952EB17E5EE350014D6E1 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = D67952E617E5EE350014D6E1 /* AppDelegate.mm */; };
-		D67952EC17E5EE350014D6E1 /* GLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = D67952E817E5EE350014D6E1 /* GLView.mm */; };
-		D67952ED17E5EE350014D6E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D67952EA17E5EE350014D6E1 /* ViewController.m */; };
-		D67952F017E5EE500014D6E1 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D67952EE17E5EE500014D6E1 /* main.mm */; };
 		D67952F717E5EE610014D6E1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D67952F417E5EE610014D6E1 /* Default-568h@2x.png */; };
 		D67952F817E5EE610014D6E1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D67952F517E5EE610014D6E1 /* Default.png */; };
 		D67952F917E5EE610014D6E1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D67952F617E5EE610014D6E1 /* Default@2x.png */; };
 		D67952FC17E5EE7D0014D6E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D67952FA17E5EE7D0014D6E1 /* InfoPlist.strings */; };
+		D6B1967817E5F94B0044515C /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967217E5F94B0044515C /* AppDelegate.mm */; };
+		D6B1967917E5F94B0044515C /* GLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967417E5F94B0044515C /* GLView.mm */; };
+		D6B1967A17E5F94B0044515C /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967517E5F94B0044515C /* main.mm */; };
+		D6B1967B17E5F94B0044515C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967717E5F94B0044515C /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,18 +42,18 @@
 		D66DBA3517E5DD8B00C12B9C /* RenderDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderDevice.h; sourceTree = "<group>"; };
 		D66DBA3617E5DD8B00C12B9C /* TouchEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TouchEvent.cpp; sourceTree = "<group>"; };
 		D66DBA3717E5DD8B00C12B9C /* TouchEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchEvent.h; sourceTree = "<group>"; };
-		D67952E517E5EE350014D6E1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = SOURCE_ROOT; };
-		D67952E617E5EE350014D6E1 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = SOURCE_ROOT; };
-		D67952E717E5EE350014D6E1 /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLView.h; sourceTree = SOURCE_ROOT; };
-		D67952E817E5EE350014D6E1 /* GLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLView.mm; sourceTree = SOURCE_ROOT; };
-		D67952E917E5EE350014D6E1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = SOURCE_ROOT; };
-		D67952EA17E5EE350014D6E1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = SOURCE_ROOT; };
-		D67952EE17E5EE500014D6E1 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = SOURCE_ROOT; };
 		D67952EF17E5EE500014D6E1 /* template-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "template-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D67952F417E5EE610014D6E1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D67952F517E5EE610014D6E1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D67952F617E5EE610014D6E1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D67952FB17E5EE7D0014D6E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		D6B1967117E5F94B0044515C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../sources/ios/AppDelegate.h; sourceTree = "<group>"; };
+		D6B1967217E5F94B0044515C /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = ../../sources/ios/AppDelegate.mm; sourceTree = "<group>"; };
+		D6B1967317E5F94B0044515C /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLView.h; path = ../../sources/ios/GLView.h; sourceTree = "<group>"; };
+		D6B1967417E5F94B0044515C /* GLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GLView.mm; path = ../../sources/ios/GLView.mm; sourceTree = "<group>"; };
+		D6B1967517E5F94B0044515C /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = ../../sources/ios/main.mm; sourceTree = "<group>"; };
+		D6B1967617E5F94B0044515C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../../sources/ios/ViewController.h; sourceTree = "<group>"; };
+		D6B1967717E5F94B0044515C /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../../sources/ios/ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,23 +104,22 @@
 		D625798C16C403CD008C223F /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				D67952E517E5EE350014D6E1 /* AppDelegate.h */,
-				D67952E617E5EE350014D6E1 /* AppDelegate.mm */,
-				D67952E717E5EE350014D6E1 /* GLView.h */,
-				D67952E817E5EE350014D6E1 /* GLView.mm */,
-				D67952E917E5EE350014D6E1 /* ViewController.h */,
-				D67952EA17E5EE350014D6E1 /* ViewController.m */,
+				D6B1967117E5F94B0044515C /* AppDelegate.h */,
+				D6B1967217E5F94B0044515C /* AppDelegate.mm */,
+				D6B1967317E5F94B0044515C /* GLView.h */,
+				D6B1967417E5F94B0044515C /* GLView.mm */,
+				D6B1967517E5F94B0044515C /* main.mm */,
+				D6B1967617E5F94B0044515C /* ViewController.h */,
+				D6B1967717E5F94B0044515C /* ViewController.m */,
 				D625798D16C403CD008C223F /* Supporting Files */,
 			);
 			name = ios;
-			path = OpenGL_Test;
 			sourceTree = "<group>";
 		};
 		D625798D16C403CD008C223F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				D67952F317E5EE610014D6E1 /* res */,
-				D67952EE17E5EE500014D6E1 /* main.mm */,
 				D67952EF17E5EE500014D6E1 /* template-Info.plist */,
 				D67952FA17E5EE7D0014D6E1 /* InfoPlist.strings */,
 			);
@@ -232,10 +231,10 @@
 				D66DBA3817E5DD8B00C12B9C /* Application.cpp in Sources */,
 				D66DBA3917E5DD8B00C12B9C /* GlHelper.cpp in Sources */,
 				D66DBA3A17E5DD8B00C12B9C /* TouchEvent.cpp in Sources */,
-				D67952EB17E5EE350014D6E1 /* AppDelegate.mm in Sources */,
-				D67952EC17E5EE350014D6E1 /* GLView.mm in Sources */,
-				D67952ED17E5EE350014D6E1 /* ViewController.m in Sources */,
-				D67952F017E5EE500014D6E1 /* main.mm in Sources */,
+				D6B1967817E5F94B0044515C /* AppDelegate.mm in Sources */,
+				D6B1967917E5F94B0044515C /* GLView.mm in Sources */,
+				D6B1967A17E5F94B0044515C /* main.mm in Sources */,
+				D6B1967B17E5F94B0044515C /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
