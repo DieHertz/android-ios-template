@@ -8,7 +8,8 @@ class GlHelper {
     GlHelper(const GlHelper&) = delete;
 
 public:
-    static GLuint createShader(const char* src, GLenum type);
+    static GLuint compile(const char* src, GLenum type);
+    static GLuint link(GLuint vertexShader, GLuint fragmentShader);
 };
 
 #endif /* GlHelper_h */

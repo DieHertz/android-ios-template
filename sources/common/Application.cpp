@@ -1,11 +1,11 @@
 #include "Application.h"
 #include "RenderDevice.h"
-#include "GlHelper.h"
+#include "ShaderProgram.h"
 #include "Log.h"
 
 #include <memory>
 
-static GLuint program;
+std::unique_ptr<ShaderProgram> pProgram;
 static GLint positionLoc;
 static GLint colorLoc;
 
@@ -42,33 +42,10 @@ void Application::onContextCreated() {
         "}"
     };
 
-    auto vShader = GlHelper::createShader(vShaderSrc, GL_VERTEX_SHADER);
-    auto fShader = GlHelper::createShader(fShaderSrc, GL_FRAGMENT_SHADER);
-    program = glCreateProgram();
-    if (!program) {
-        return;
-    }
+    pProgram = std::unique_ptr<ShaderProgram>(new ShaderProgram(vShaderSrc, fShaderSrc));
 
-    glAttachShader(program, vShader);
-    glAttachShader(program, fShader);
-    glLinkProgram(program);
-    GLint linked;
-    glGetProgramiv(program, GL_LINK_STATUS, &linked);
-    if (!linked) {
-        GLint infoLen ;
-        glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infoLen);
-        if (infoLen > 1) {
-            auto info = std::unique_ptr<char[]>(new char[infoLen]);
-            glGetProgramInfoLog(program, infoLen, nullptr, info.get());
-            Log::info(info.get());
-        }
-
-        glDeleteProgram(program);
-        program = 0;
-    }
-
-    positionLoc = glGetAttribLocation(program, "aPosition");
-    colorLoc = glGetAttribLocation(program, "aColor");
+    positionLoc = glGetAttribLocation(pProgram->get(), "aPosition");
+    colorLoc = glGetAttribLocation(pProgram->get(), "aColor");
 
     glEnable(GL_SCISSOR_TEST);
 }
@@ -86,7 +63,7 @@ void Application::onDraw() {
     glClearColor(0.63f, 0.35f, 0.54f, 1);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glUseProgram(program);
+    pProgram->use();
 
     GLfloat vertices[] {
         -0.75f, 0.5f,

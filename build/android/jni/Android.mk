@@ -9,9 +9,10 @@ LOCAL_CPPFLAGS   := -Wall -Wno-format-security -std=c++11
 LOCAL_LDLIBS     := -lGLESv2 -llog
 LOCAL_C_INCLUDES := ../../sources/common
 LOCAL_SRC_FILES  := \
-    main.cpp \
+    $(SOURCES_DIR)/../android/jni/main.cpp \
     $(SOURCES_DIR)/Application.cpp \
     $(SOURCES_DIR)/TouchEvent.cpp \
-    $(SOURCES_DIR)/GlHelper.cpp
+    $(SOURCES_DIR)/GlHelper.cpp \
+    $(SOURCES_DIR)/ShaderProgram.cpp
 
 include $(BUILD_SHARED_LIBRARY)
