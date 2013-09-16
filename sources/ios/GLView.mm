@@ -82,8 +82,6 @@
                               GL_RENDERBUFFER, _depthRenderBuffer);
 }
 
-#pragma mark Touches
-
 - (void)onTouches:(NSSet*)touches withType:(TouchEvent::Type)touchEventType {
     NSArray *sortedTouches = [[touches allObjects] sortedArrayUsingSelector:@selector(timestamp)];
     for (int i = 0; i < sortedTouches.count; i++) {
