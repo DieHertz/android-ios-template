@@ -1,12 +1,7 @@
-
-//  GLView.m
-//  OpenGL_Test
-//
-//  Created by Sachs on 07.02.13.
-//  Copyright (c) 2013 SachsHome. All rights reserved.
-//
-
 #import "GLView.h"
+#import <OpenGLES/ES2/gl.h>
+#import <OpenGLES/ES2/glext.h>
+
 #include "Application.h"
 
 @implementation GLView
@@ -32,7 +27,6 @@
 }
 
 - (void)render:(CADisplayLink*)displayLink {
-//    float dt = displayLink.duration;
     Application::getInstance()->onUpdate();
     Application::getInstance()->onDraw();
     [_context presentRenderbuffer:GL_RENDERBUFFER];
@@ -94,7 +88,6 @@
 - (void)dealloc
 {
     [_context release];
-    _context = nil;
     [super dealloc];
 }
 

@@ -2,6 +2,7 @@
 #define Template_h
 
 #include <Application.h>
+#include <Log.h>
 
 class Template : public Application {
 public:

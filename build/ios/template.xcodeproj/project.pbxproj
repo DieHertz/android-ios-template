@@ -21,7 +21,7 @@
 		D67952FC17E5EE7D0014D6E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D67952FA17E5EE7D0014D6E1 /* InfoPlist.strings */; };
 		D6B1967817E5F94B0044515C /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967217E5F94B0044515C /* AppDelegate.mm */; };
 		D6B1967917E5F94B0044515C /* GLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967417E5F94B0044515C /* GLView.mm */; };
-		D6B1967A17E5F94B0044515C /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967517E5F94B0044515C /* main.mm */; };
+		D6B1967A17E5F94B0044515C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967517E5F94B0044515C /* main.m */; };
 		D6B1967B17E5F94B0044515C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B1967717E5F94B0044515C /* ViewController.m */; };
 		D6B4398A17E601DD00A82721 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4398817E601DD00A82721 /* ShaderProgram.cpp */; };
 		D6EEB1E717E63B0800D06D2C /* RenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EEB1E617E63B0800D06D2C /* RenderDevice.cpp */; };
@@ -55,7 +55,7 @@
 		D6B1967217E5F94B0044515C /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = ../../sources/ios/AppDelegate.mm; sourceTree = "<group>"; };
 		D6B1967317E5F94B0044515C /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLView.h; path = ../../sources/ios/GLView.h; sourceTree = "<group>"; };
 		D6B1967417E5F94B0044515C /* GLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GLView.mm; path = ../../sources/ios/GLView.mm; sourceTree = "<group>"; };
-		D6B1967517E5F94B0044515C /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = ../../sources/ios/main.mm; sourceTree = "<group>"; };
+		D6B1967517E5F94B0044515C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../../sources/ios/main.m; sourceTree = "<group>"; };
 		D6B1967617E5F94B0044515C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../../sources/ios/ViewController.h; sourceTree = "<group>"; };
 		D6B1967717E5F94B0044515C /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../../sources/ios/ViewController.m; sourceTree = "<group>"; };
 		D6B4398817E601DD00A82721 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderProgram.cpp; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 				D6B1967217E5F94B0044515C /* AppDelegate.mm */,
 				D6B1967317E5F94B0044515C /* GLView.h */,
 				D6B1967417E5F94B0044515C /* GLView.mm */,
-				D6B1967517E5F94B0044515C /* main.mm */,
+				D6B1967517E5F94B0044515C /* main.m */,
 				D6B1967617E5F94B0044515C /* ViewController.h */,
 				D6B1967717E5F94B0044515C /* ViewController.m */,
 				D625798D16C403CD008C223F /* Supporting Files */,
@@ -260,7 +260,7 @@
 				D66DBA3A17E5DD8B00C12B9C /* TouchEvent.cpp in Sources */,
 				D6B1967817E5F94B0044515C /* AppDelegate.mm in Sources */,
 				D6B1967917E5F94B0044515C /* GLView.mm in Sources */,
-				D6B1967A17E5F94B0044515C /* main.mm in Sources */,
+				D6B1967A17E5F94B0044515C /* main.m in Sources */,
 				D6B1967B17E5F94B0044515C /* ViewController.m in Sources */,
 				D6B4398A17E601DD00A82721 /* ShaderProgram.cpp in Sources */,
 				D6EEB1E717E63B0800D06D2C /* RenderDevice.cpp in Sources */,
@@ -341,10 +341,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_ENABLE_ASM_KEYWORD = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "template-Prefix.pch";
+				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "template-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-I../../sources/common";
@@ -352,6 +355,7 @@
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
+				WARNING_CFLAGS = "-Wno-format-security";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -360,10 +364,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_ENABLE_ASM_KEYWORD = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "template-Prefix.pch";
+				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "template-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-I../../sources/common";
@@ -371,6 +378,7 @@
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
+				WARNING_CFLAGS = "-Wno-format-security";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

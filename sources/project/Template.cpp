@@ -62,8 +62,6 @@ void Template::onContextCreated() {
     positionLoc = pProgram->getAttribLocation("aPosition");
     colorLoc = pProgram->getAttribLocation("aColor");
 
-    glEnable(GL_SCISSOR_TEST);
-
     RenderDevice::clearColor(0.65f, 0.35f, 0.54f, 1);
 }
 
@@ -96,6 +94,5 @@ void Template::onDraw() {
 }
 
 bool Template::onBackPressed() {
-    Log::info("%s", __FUNCTION__);
     return true;
 }

@@ -1,14 +1,6 @@
-//
-//  AppDelegate.m
-//  OpenGL_Test
-//
-//  Created by Sachs on 07.02.13.
-//  Copyright (c) 2013 SachsHome. All rights reserved.
-//
-
 #import "AppDelegate.h"
 #import "ViewController.h"
-//#include "Template.h"
+
 #include "Application.h"
 
 @implementation AppDelegate
@@ -28,7 +20,7 @@
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     self.window = [[[UIWindow alloc] initWithFrame:screenBounds] autorelease];
     // Override point for customization after application launch.
-    self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
+    self.viewController = [[[ViewController alloc] init] autorelease];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     

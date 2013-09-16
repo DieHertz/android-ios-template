@@ -8,14 +8,16 @@ extern Application* createApplication();
 class TouchEvent;
 
 class Application {
-public:
-    virtual ~Application();
+protected:
+    virtual void onUpdate(const float delta);
 
+public:
+    virtual ~Application() = 0;
+    
     virtual void onCreate();
     virtual void onContextCreated();
     virtual void onResize(const int width, const int height);
     void onUpdate();
-    virtual void onUpdate(const float delta);
     virtual void onDraw();
     virtual void onTouch(const TouchEvent& event);
 
