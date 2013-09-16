@@ -3,6 +3,7 @@
 #import <OpenGLES/ES2/glext.h>
 
 #include "Application.h"
+#include <TouchEvent.h>
 
 @implementation GLView
 
@@ -22,6 +23,7 @@
         [self setupDisplayLink];
         Application::getInstance()->onSurfaceCreated();
         Application::getInstance()->onResize(frame.size.width, frame.size.height);
+        self.multipleTouchEnabled = YES;
     }
     return self;
 }
@@ -30,11 +32,6 @@
     Application::getInstance()->onUpdate();
     Application::getInstance()->onDraw();
     [_context presentRenderbuffer:GL_RENDERBUFFER];
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    UITouch *touch = [touches anyObject];
-//    CGPoint p = [touch locationInView:self];
 }
 
 - (void)setupDisplayLink {
@@ -83,6 +80,33 @@
                               GL_RENDERBUFFER, _colorRenderBuffer);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
                               GL_RENDERBUFFER, _depthRenderBuffer);
+}
+
+#pragma mark Touches
+
+- (void)onTouches:(NSSet*)touches withType:(TouchEvent::Type)touchEventType {
+    NSArray *sortedTouches = [[touches allObjects] sortedArrayUsingSelector:@selector(timestamp)];
+    for (int i = 0; i < sortedTouches.count; i++) {
+        UITouch *touch = [sortedTouches objectAtIndex:i];
+        CGPoint p = [touch locationInView:self];
+        Application::getInstance()->onTouch(TouchEvent(p.x, p.y, touchEventType, i));
+    }
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self onTouches:touches withType:TouchEvent::Down];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self onTouches:touches withType:TouchEvent::Move];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self onTouches:touches withType:TouchEvent::Cancel];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self onTouches:touches withType:TouchEvent::Up];
 }
 
 - (void)dealloc

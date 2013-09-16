@@ -16,6 +16,7 @@ public:
     virtual void onUpdate(const float delta) override;
     virtual void onDraw() override;
     virtual bool onBackPressed() override;
+    virtual void onTouch(const TouchEvent &event) override;
 
 private:
     std::unique_ptr<ShaderProgram> mProgram;

@@ -2,7 +2,7 @@
 
 #include <RenderDevice.h>
 #include <Log.h>
-
+#include <TouchEvent.h>
 #include <cmath>
 
 Template::Template() : mTime(0) {
@@ -83,6 +83,11 @@ void Template::onDraw() {
     glEnableVertexAttribArray(colorLoc);
 
     glDrawArrays(GL_TRIANGLES, 0, 3);
+}
+
+void Template::onTouch(const TouchEvent &event) {
+    const char *touchType[] = { "Down", "Up", "Move", "Cancel" };
+    Log::info("touch%s_%d (%.1f,%.1f)", touchType[event.getType()], event.getIndex(), event.getX(), event.getY());
 }
 
 bool Template::onBackPressed() {
