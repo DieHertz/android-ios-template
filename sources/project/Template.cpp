@@ -65,7 +65,7 @@ void Template::onDraw() {
 
     const auto offset = 0.25f * std::sin(mTime);
     GLfloat vertices[] {
-        -0.75f, 0.5f,
+        -0.75f, 0.5f - 2 * offset,
         0.5f, 0.5f + offset,
         0.5f, -0.5f - offset
     };
