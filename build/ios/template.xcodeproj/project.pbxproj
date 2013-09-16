@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		569CCF0E17E6F5050003F210 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 569CCF0C17E6F5050003F210 /* Timer.cpp */; };
 		D625798716C403CD008C223F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D625798616C403CD008C223F /* UIKit.framework */; };
 		D625798916C403CD008C223F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D625798816C403CD008C223F /* Foundation.framework */; };
 		D625798B16C403CD008C223F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D625798A16C403CD008C223F /* CoreGraphics.framework */; };
@@ -30,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		569CCF0C17E6F5050003F210 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
+		569CCF0D17E6F5050003F210 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
 		D625798216C403CD008C223F /* template.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = template.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D625798616C403CD008C223F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D625798816C403CD008C223F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,6 +153,8 @@
 		D66DBA2D17E5DD8B00C12B9C /* common */ = {
 			isa = PBXGroup;
 			children = (
+				569CCF0C17E6F5050003F210 /* Timer.cpp */,
+				569CCF0D17E6F5050003F210 /* Timer.h */,
 				D6EEB1E517E63B0800D06D2C /* Gl.h */,
 				D66DBA3517E5DD8B00C12B9C /* RenderDevice.h */,
 				D6EEB1E617E63B0800D06D2C /* RenderDevice.cpp */,
@@ -266,6 +271,7 @@
 				D6EEB1E717E63B0800D06D2C /* RenderDevice.cpp in Sources */,
 				D6EEB1EC17E63B1C00D06D2C /* EntryPoint.cpp in Sources */,
 				D6EEB1ED17E63B1C00D06D2C /* Template.cpp in Sources */,
+				569CCF0E17E6F5050003F210 /* Timer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

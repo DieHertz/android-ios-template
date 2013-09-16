@@ -14,7 +14,7 @@ JNIEXPORT void JNI_NAME(onCreate)(JNIEnv*, jclass) {
 }
 
 JNIEXPORT void JNI_NAME(onSurfaceCreated)(JNIEnv*, jclass) {
-    Application::getInstance()->onContextCreated();
+    Application::getInstance()->onSurfaceCreated();
 }
 
 JNIEXPORT void JNI_NAME(onSurfaceChanged)(JNIEnv*, jclass, jint width, jint height) {

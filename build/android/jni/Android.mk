@@ -17,7 +17,8 @@ LOCAL_SRC_FILES  := \
     $(COMMON_SRC_DIR)/TouchEvent.cpp \
     $(COMMON_SRC_DIR)/GlHelper.cpp \
     $(COMMON_SRC_DIR)/ShaderProgram.cpp \
-    $(COMMON_SRC_DIR)/RenderDevice.cpp
+    $(COMMON_SRC_DIR)/RenderDevice.cpp \
+    $(COMMON_SRC_DIR)/Timer.cpp
 
 LOCAL_SRC_FILES += \
     $(PROJECT_SRC_DIR)/EntryPoint.cpp \

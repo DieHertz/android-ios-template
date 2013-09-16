@@ -20,7 +20,7 @@
         [self setupRenderBuffer];
         [self setupFrameBuffer];
         [self setupDisplayLink];
-        Application::getInstance()->onContextCreated();
+        Application::getInstance()->onSurfaceCreated();
         Application::getInstance()->onResize(frame.size.width, frame.size.height);
     }
     return self;

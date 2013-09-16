@@ -2,15 +2,28 @@
 
 #include <memory>
 
+Application::Application() : mContextCreated(false) {
+
+}
+
 Application::~Application() {
     
 }
 
 void Application::onCreate() {
-    
+
+}
+
+void Application::onSurfaceCreated() {
+    mContextCreated ? onContextLost() : onContextCreated();
+    mContextCreated = true;
 }
 
 void Application::onContextCreated() {
+    
+}
+
+void Application::onContextLost() {
     
 }
 
@@ -19,7 +32,8 @@ void Application::onResize(const int width, const int height) {
 }
 
 void Application::onUpdate() {
-    onUpdate(0);
+    mTimer.update();
+    onUpdate(mTimer.elapsed());
 }
 
 void Application::onUpdate(const float delta) {

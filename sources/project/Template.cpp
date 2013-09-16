@@ -2,14 +2,13 @@
 
 #include <Gl.h>
 #include <RenderDevice.h>
-#include <ShaderProgram.h>
 #include <Log.h>
 
-#include <memory>
+#include <cmath>
 
-std::unique_ptr<ShaderProgram> pProgram;
-static GLint positionLoc;
-static GLint colorLoc;
+Template::Template() : mTime(0) {
+
+}
 
 void Template::onContextCreated() {
     Log::info("%s: %s", __FUNCTION__, glGetString(GL_VERSION));
@@ -43,42 +42,35 @@ void Template::onContextCreated() {
         "}"
     };
 
-    /*  ShaderProgram pointer should be reset in order to
-        force its destructor call.
-        Otherwise destructor will be called too late and
-        following situation may occur:
-        1. ShaderProgram pointed by pProgram has its OpenGL objects
-           invalidated.
-        2. New ShaderProgram is created, having the same values of
-           underlying OpenGL objects.
-        3. pProgram is assigned new value, calling destructor for old
-           ShaderProgram
-        4. Old ShaderProgram's destructor deletes the objects it no
-           longer owns, thus garbaging new ShaderProgram
-    */
-    pProgram.reset();
-    pProgram = std::unique_ptr<ShaderProgram>(new ShaderProgram(vShaderSrc, fShaderSrc));
-
-    positionLoc = pProgram->getAttribLocation("aPosition");
-    colorLoc = pProgram->getAttribLocation("aColor");
+    mProgram = std::unique_ptr<ShaderProgram>(new ShaderProgram(vShaderSrc, fShaderSrc));
 
     RenderDevice::clearColor(0.65f, 0.35f, 0.54f, 1);
+}
+
+void Template::onContextLost() {
+    mProgram.reset();
 }
 
 void Template::onResize(const int width, const int height) {
     RenderDevice::viewport(0, 0, width, height);
 }
 
+void Template::onUpdate(const float delta) {
+    mTime += delta;
+}
+
 void Template::onDraw() {
     RenderDevice::clear();
 
-    RenderDevice::begin(*pProgram.get());
+    RenderDevice::begin(*mProgram.get());
 
+    const auto offset = 0.25f * std::sin(mTime);
     GLfloat vertices[] {
         -0.75f, 0.5f,
-        0.5f, 0.5f,
-        0.5f, -0.5f
+        0.5f, 0.5f + offset,
+        0.5f, -0.5f - offset
     };
+    auto positionLoc = mProgram->getAttribLocation("aPosition");
     glVertexAttribPointer(positionLoc, 2, GL_FLOAT, GL_FALSE, 0, vertices);
     glEnableVertexAttribArray(positionLoc);
     
@@ -87,10 +79,13 @@ void Template::onDraw() {
         0, 1, 0,
         0, 0, 1
     };
+    auto colorLoc = mProgram->getAttribLocation("aColor");
     glVertexAttribPointer(colorLoc, 3, GL_FLOAT, GL_FALSE, 0, colors);
     glEnableVertexAttribArray(colorLoc);
 
     glDrawArrays(GL_TRIANGLES, 0, 3);
+    
+    glFlush();
 }
 
 bool Template::onBackPressed() {

@@ -1,0 +1,2 @@
+- OpenGL ES 2 has a default shader program (at least on Android) which outputs vertices in white color.
+- Scissor test on iOS assumes singular scissor rectangle by default resulting in drawing calls having absolutely no effect
