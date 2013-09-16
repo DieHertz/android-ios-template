@@ -43,7 +43,7 @@ void Template::onContextCreated() {
 
     mProgram = std::unique_ptr<ShaderProgram>(new ShaderProgram(vShaderSrc, fShaderSrc));
 
-    RenderDevice::clearColor(0.65f, 0.35f, 0.54f, 1);
+    RenderDevice::clearColor(1, 1, 1, 1);
 }
 
 void Template::onContextLost() {
@@ -61,28 +61,22 @@ void Template::onUpdate(const float delta) {
 void Template::onDraw() {
     RenderDevice::clear();
 
-    RenderDevice::begin(*mProgram.get());
-
     const auto offset = 0.25f * std::sin(mTime);
     GLfloat vertices[] {
         -0.75f, 0.5f - 2 * offset,
         0.5f, 0.5f + offset,
-        0.5f, -0.5f - offset
+        0.5f, -0.5f - offset,
+        -0.75f, 0.5f - 2 * offset,
     };
-    auto positionLoc = mProgram->getAttribLocation("aPosition");
-    glVertexAttribPointer(positionLoc, 2, GL_FLOAT, GL_FALSE, 0, vertices);
-    glEnableVertexAttribArray(positionLoc);
     
     GLfloat colors[] {
         1, 0, 0,
         0, 1, 0,
-        0, 0, 1
+        0, 0, 1,
+        1, 0, 0,
     };
-    auto colorLoc = mProgram->getAttribLocation("aColor");
-    glVertexAttribPointer(colorLoc, 3, GL_FLOAT, GL_FALSE, 0, colors);
-    glEnableVertexAttribArray(colorLoc);
 
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    RenderDevice::drawLine(vertices, colors, 4, *mProgram.get());
 }
 
 bool Template::onBackPressed() {
