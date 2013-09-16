@@ -84,8 +84,6 @@ void Template::onDraw() {
     glEnableVertexAttribArray(colorLoc);
 
     glDrawArrays(GL_TRIANGLES, 0, 3);
-    
-    glFlush();
 }
 
 bool Template::onBackPressed() {
