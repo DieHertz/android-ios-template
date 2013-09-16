@@ -12,8 +12,8 @@ class BasicView extends GLSurfaceView {
     public BasicView(Context context) {
         super(context);
 
-        setEGLConfigChooser(8, 8, 8, 8, 16, 0);
         setEGLContextClientVersion(2);
+        setEGLConfigChooser(8, 8, 8, 8, 16, 8);
         setPreserveEGLContextOnPause(true);
         setRenderer(new Renderer());
     }

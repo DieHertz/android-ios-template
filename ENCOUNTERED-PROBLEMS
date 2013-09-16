@@ -1,2 +1,3 @@
 - OpenGL ES 2 has a default shader program (at least on Android) which outputs vertices in white color.
 - Scissor test on iOS assumes singular scissor rectangle by default resulting in drawing calls having absolutely no effect
+- Sample from Androi dNDK r9 (gles3jni) suggests calling setEGLConfigChooser(...) before setEGLContextClientVersion(2). On real devices it results in EGL_BAD_CONFIG crash or some meaningless EGL_SUCCESS (probably device's bug) error. Besides not every device (not even every emulator) supports 0 bits for alpha channel.
