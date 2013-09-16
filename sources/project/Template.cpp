@@ -1,6 +1,5 @@
 #include "Template.h"
 
-#include <Gl.h>
 #include <RenderDevice.h>
 #include <Log.h>
 
