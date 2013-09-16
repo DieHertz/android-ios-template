@@ -13,6 +13,9 @@ public:
     static void viewport(const float x, const float y, const float w, const float h);
 
     static void begin(const ShaderProgram& program);
+
+    static void drawLine(const float* vertices, const float* colors, const int points,
+                         const ShaderProgram& program);
 };
 
 #endif /* RenderDevice_h */
