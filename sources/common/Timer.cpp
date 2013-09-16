@@ -1,6 +1,6 @@
 #include "Timer.h"
 
-Timer::Timer() : mElapsed(0) {
+Timer::Timer() : mElapsed(0), mLastTime(std::chrono::steady_clock::now()) {
 
 }
 

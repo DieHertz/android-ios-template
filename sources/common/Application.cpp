@@ -17,6 +17,7 @@ void Application::onCreate() {
 void Application::onSurfaceCreated() {
     mContextCreated ? onContextLost() : onContextCreated();
     mContextCreated = true;
+    mTimer.reset();
 }
 
 void Application::onContextCreated() {
