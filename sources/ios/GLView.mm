@@ -1,9 +1,11 @@
 #import "GLView.h"
-#import <OpenGLES/ES2/gl.h>
-#import <OpenGLES/ES2/glext.h>
 
 #include <Application.h>
 #include <TouchEvent.h>
+
+#import <OpenGLES/ES2/gl.h>
+#import <OpenGLES/ES2/glext.h>
+
 
 @implementation GLView
 
