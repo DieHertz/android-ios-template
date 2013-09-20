@@ -80,7 +80,7 @@ void Template::onDraw() {
     RenderDevice::drawLine(vertices, colors, 4, *mProgram.get());
 }
 
-void Template::onTouch(const TouchEvent &event) {
+void Template::onTouch(const TouchEvent& event) {
     const char* touchType[] = { "Down", "Up", "Move", "Cancel" };
     Log::info("touch%s_%d (%.1f,%.1f)", touchType[event.getType()], event.getIndex(),
               event.getX(), event.getY());

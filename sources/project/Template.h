@@ -15,7 +15,7 @@ public:
     virtual void onResize(const int width, const int height) override;
     virtual void onUpdate(const float delta) override;
     virtual void onDraw() override;
-    virtual void onTouch(const TouchEvent &event) override;
+    virtual void onTouch(const TouchEvent& event) override;
     virtual bool onBackPressed() override;
 
 private:
