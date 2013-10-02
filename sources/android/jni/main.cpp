@@ -27,7 +27,7 @@ JNIEXPORT void JNI_NAME(onDrawFrame)(JNIEnv*, jclass) {
 }
 
 JNIEXPORT void JNI_NAME(onTouchEvent)(JNIEnv*, jclass, jfloat x, jfloat y, jint type, jint index) {
-    Application::getInstance()->onTouch(TouchEvent(x, y, TouchEvent::Down, index));
+    Application::getInstance()->onTouch(TouchEvent(x, y, static_cast<TouchEvent::Type>(type), index));
 }
 
 JNIEXPORT jboolean JNI_NAME(onBackPressed)(JNIEnv*, jclass) {

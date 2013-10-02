@@ -20,7 +20,31 @@ class BasicView extends GLSurfaceView {
 
     @Override
     public boolean onTouchEvent(final MotionEvent event) {
-        NativeInterface.onTouchEvent(0, 0, 0, 0);
+        switch (event.getActionMasked()) {
+        case MotionEvent.ACTION_DOWN:
+            NativeInterface.onTouchEvent(event.getX(), event.getY(), 0, 0);
+            break;
+
+        case MotionEvent.ACTION_POINTER_DOWN:
+            NativeInterface.onTouchEvent(event.getX(), event.getY(), 0, 0);
+            break;
+
+        case MotionEvent.ACTION_MOVE:
+            NativeInterface.onTouchEvent(event.getX(), event.getY(), 2, 0);
+            break;
+
+        case MotionEvent.ACTION_UP:
+            NativeInterface.onTouchEvent(event.getX(), event.getY(), 1, 0);
+            break;
+
+        case MotionEvent.ACTION_POINTER_UP:
+            NativeInterface.onTouchEvent(event.getX(), event.getY(), 1, 0);
+            break;
+
+        case MotionEvent.ACTION_CANCEL:
+            NativeInterface.onTouchEvent(event.getX(), event.getY(), 3, 0);
+            break;
+        }
 
         return true;
     }
