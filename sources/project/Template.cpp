@@ -47,9 +47,9 @@ void Template::onContextLost() {
 
 void Template::onResize(const int width, const int height) {
     RenderDevice::viewport(0, 0, width, height);
-    RenderDevice::lookAt(mEx, mEy, mEz,
+    RenderDevice::lookAt(mEye.x, mEye.y, mEye.z,
                          0, 0, 0,
-                         0, 1, 0);
+                         mUp.x, mUp.y, mUp.z);
     RenderDevice::perspective(85.0f, static_cast<float>(width) / height, 0.1f, 5.0f);
 }
 
@@ -86,11 +86,16 @@ void Template::onTouch(const TouchEvent& event) {
 
         mTimer = 0.5f;
     } else if (event.getType() == TouchEvent::Move) {
-        mEx += (event.getX() - mX) * 0.01f;
-        mEz += (event.getY() - mY) * 0.01f;
-        RenderDevice::lookAt(mEx, mEy, mEz,
+        const float k = 1.0f;
+        auto dx = k * (event.getX() - mX);
+        auto dy = k * (event.getY() - mY);
+
+        left(dx);
+        up(-dy);
+
+        RenderDevice::lookAt(mEye.x, mEye.y, mEye.z,
                              0, 0, 0,
-                             0, 1, 0);
+                             mUp.x, mUp.y, mUp.z);
         mX = event.getX();
         mY = event.getY();
     }
@@ -148,4 +153,24 @@ void Template::createLine() {
     }
 
     mLines.swap(lines);
+}
+
+void Template::up(const float degrees) {
+    glm::vec3 ortho { glm::normalize(glm::cross(mEye, mUp)) };
+    glm::vec4 eye4(mEye, 1.0f);
+    glm::vec4 up4(mUp, 1.0f);
+
+    eye4 = eye4 * glm::rotate(glm::mat4(), degrees, ortho);
+    up4 = up4 * glm::rotate(glm::mat4(), degrees, ortho);
+
+    mEye = glm::vec3(eye4);
+    mUp = glm::vec3(up4);
+}
+
+void Template::left(const float degrees) {
+    glm::vec4 eye4 {
+        glm::vec4(mEye, 1.0f) * glm::rotate(glm::mat4(), degrees, mUp)
+    };
+
+    mEye = glm::vec3(eye4);
 }

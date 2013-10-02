@@ -6,6 +6,8 @@
 #include <Application.h>
 #include <ShaderProgram.h>
 
+#include <glm/gtc/matrix_transform.hpp>
+
 #include <memory>
 #include <vector>
 
@@ -26,15 +28,17 @@ private:
     void subdiv();
     void createLine();
 
+    void up(const float degrees);
+    void left(const float degrees);
+
     std::unique_ptr<ShaderProgram> mProgram;
     float mTime = 0;
 
     float mX;
     float mY;
 
-    float mEx = -0.4f;
-    float mEy = 0.05f;
-    float mEz = -0.2f;
+    glm::vec3 mEye = glm::vec3(0, 0, -0.5f);
+    glm::vec3 mUp = glm::vec3(0, 1.0f, 0);
 
     float mTimer = 0;
 
