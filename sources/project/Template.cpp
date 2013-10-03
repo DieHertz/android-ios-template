@@ -106,6 +106,7 @@ void Template::onTouch(const TouchEvent& event) {
 
 bool Template::onBackPressed() {
     reset();
+    fillVbo();
 
     return true;
 }
@@ -118,6 +119,8 @@ void Template::fillVbo() {
     glBindBuffer(GL_ARRAY_BUFFER, mLinesVbo);
     glBufferData(GL_ARRAY_BUFFER, mLines.size() * sizeof(decltype(mLines)::value_type),
                  mLines.data(), GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void Template::reset() {

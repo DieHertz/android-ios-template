@@ -59,6 +59,8 @@ void RenderDevice::draw(const GLuint vbo, const int points, const GLenum type,
     glDrawArrays(type, 0, points);
 
     glDisableVertexAttribArray(positionLoc);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void RenderDevice::draw(const float* vertices, const int points, const GLenum type,
