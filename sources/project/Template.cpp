@@ -37,12 +37,18 @@ void Template::onContextCreated() {
 
     mProgram = std::unique_ptr<ShaderProgram>(new ShaderProgram(vShaderSrc, fShaderSrc));
 
+    glGenBuffers(1, &mTrianglesVbo);
+    glGenBuffers(1, &mLinesVbo);
+    fillVbo();
+
     RenderDevice::clearColor(0, 0, 0, 1);
     glEnable(GL_DEPTH_TEST);
 }
 
 void Template::onContextLost() {
     mProgram.reset();
+    mTrianglesVbo = 0;
+    mLinesVbo = 0;
 }
 
 void Template::onResize(const int width, const int height) {
@@ -65,13 +71,9 @@ void Template::onDraw() {
     RenderDevice::clear();
 
     if (wireframe) {
-        RenderDevice::drawLine(reinterpret_cast<const float*>(&mLines[0]),
-                                    nullptr,
-                mLines.size() * 2, *mProgram.get());
+        RenderDevice::draw(mLinesVbo, mLines.size() * 2, GL_LINES, *mProgram.get());
     } else {
-        RenderDevice::drawTriangles(reinterpret_cast<const float*>(&mTriangles[0]),
-            nullptr, nullptr,
-            mTriangles.size() * 3, *mProgram.get());
+        RenderDevice::draw(mTrianglesVbo, mTriangles.size() * 3, GL_TRIANGLES, *mProgram.get());
     }
 }
 
@@ -79,6 +81,7 @@ void Template::onTouch(const TouchEvent& event) {
     if (event.getType() == TouchEvent::Down) {
         if (mTimer > 0) {
             subdiv();
+            fillVbo();
             return;
         }
         mX = event.getX();
@@ -105,6 +108,16 @@ bool Template::onBackPressed() {
     reset();
 
     return true;
+}
+
+void Template::fillVbo() {
+    glBindBuffer(GL_ARRAY_BUFFER, mTrianglesVbo);
+    glBufferData(GL_ARRAY_BUFFER, mTriangles.size() * sizeof(decltype(mTriangles)::value_type),
+                 mTriangles.data(), GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ARRAY_BUFFER, mLinesVbo);
+    glBufferData(GL_ARRAY_BUFFER, mLines.size() * sizeof(decltype(mLines)::value_type),
+                 mLines.data(), GL_STATIC_DRAW);
 }
 
 void Template::reset() {

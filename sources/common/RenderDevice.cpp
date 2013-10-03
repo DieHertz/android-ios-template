@@ -1,6 +1,5 @@
 #include "RenderDevice.h"
 #include "ShaderProgram.h"
-#include "Gl.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -48,28 +47,29 @@ void RenderDevice::begin(const ShaderProgram& program) {
     glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(modelViewProjection));
 }
 
-void RenderDevice::drawLine(const float* vertices, const float* colors, const int points,
-                            const ShaderProgram& program) {
+void RenderDevice::draw(const GLuint vbo, const int points, const GLenum type,
+                        const ShaderProgram& program) {
     begin(program);
 
     auto positionLoc = program.getAttribLocation("aPosition");
-    glVertexAttribPointer(positionLoc, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glVertexAttribPointer(positionLoc, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
     glEnableVertexAttribArray(positionLoc);
 
-    glDrawArrays(GL_LINES, 0, points);
+    glDrawArrays(type, 0, points);
 
     glDisableVertexAttribArray(positionLoc);
 }
 
-void RenderDevice::drawTriangles(const float* vertices, const float* normals, const float* colors,
-                                 const int points, const ShaderProgram& program) {
+void RenderDevice::draw(const float* vertices, const int points, const GLenum type,
+                        const ShaderProgram& program) {
     begin(program);
 
     auto positionLoc = program.getAttribLocation("aPosition");
     glVertexAttribPointer(positionLoc, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     glEnableVertexAttribArray(positionLoc);
 
-    glDrawArrays(GL_TRIANGLES, 0, points);
+    glDrawArrays(type, 0, points);
 
     glDisableVertexAttribArray(positionLoc);
 }

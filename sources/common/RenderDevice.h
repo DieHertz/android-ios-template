@@ -1,6 +1,8 @@
 #ifndef RenderDevice_h
 #define RenderDevice_h
 
+#include "Gl.h"
+
 #include <glm/glm.hpp>
 
 class ShaderProgram;
@@ -21,11 +23,10 @@ public:
 
     static void begin(const ShaderProgram& program);
 
-    static void drawLine(const float* vertices, const float* colors, const int points,
-                         const ShaderProgram& program);
-
-    static void drawTriangles(const float* vertices, const float* normals, const float* colors,
-                              const int points, const ShaderProgram& program);
+    static void draw(const GLuint vbo, const int points, const GLenum type,
+                     const ShaderProgram& program);
+    static void draw(const float* vertices, const int points, const GLenum type,
+                     const ShaderProgram& program);
 
 private:
     static glm::mat4 model;

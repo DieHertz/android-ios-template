@@ -24,6 +24,8 @@ public:
     virtual bool onBackPressed() override;
 
 private:
+    void fillVbo();
+
     void reset();
     void subdiv();
     void createLine();
@@ -46,6 +48,9 @@ private:
 
     std::vector<Triangle> mTriangles;
     std::vector<Line> mLines;
+
+    GLuint mTrianglesVbo = 0;
+    GLuint mLinesVbo = 0;
 };
 
 #endif /* Template_h */
