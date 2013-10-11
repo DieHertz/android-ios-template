@@ -21,8 +21,11 @@ void Template::onContextCreated() {
         "uniform mat4 uModelViewProjection;"
         "uniform mat4 uModelView;"
 
+        "varying float depth;"
+
         "void main() {"
             "gl_Position = uModelViewProjection * vec4(aPosition, 1);"
+            "depth = 0.2 * (abs(gl_DepthRange.diff) * gl_Position.w) / gl_Position.z;"
         "}"
     };
 
@@ -31,8 +34,10 @@ void Template::onContextCreated() {
 
         "precision mediump float;"
 
+        "varying float depth;"
+
         "void main() {"
-            "gl_FragColor = vec4(0.6, 0.4, 0.3, 1) * vec4(gl_FragCoord.w * 0.4, gl_FragCoord.w * 0.4, gl_FragCoord.w * 0.4, 1);"
+            "gl_FragColor = vec4(0.6, 0.2, 0.3, 1) + vec4(depth, depth, depth, 1);"
         "}"
     };
 
@@ -43,9 +48,13 @@ void Template::onContextCreated() {
 
     //  Scene objects
     mShapes.push_back(std::unique_ptr<Shape>(new Sphere(0.1f, 5)));
-    auto sphere = new Sphere(0.05f, 4);
-    sphere->x = 0.1f;
-    mShapes.push_back(std::unique_ptr<Shape>(sphere));
+    auto sphere1 = new Sphere(0.03f, 4);
+    sphere1->x = 0.15f;
+    mShapes.push_back(std::unique_ptr<Shape>(sphere1));
+
+    auto sphere2 = new Sphere(0.03f, 4);
+    sphere2->z = 0.15f;
+    mShapes.push_back(std::unique_ptr<Shape>(sphere2));
 }
 
 void Template::onContextLost() {
@@ -58,7 +67,7 @@ void Template::onResize(const int width, const int height) {
     RenderDevice::lookAt(mEye.x, mEye.y, mEye.z,
                          0, 0, 0,
                          mUp.x, mUp.y, mUp.z);
-    RenderDevice::perspective(85.0f, static_cast<float>(width) / height, 0.1f, 5.0f);
+    RenderDevice::perspective(60, static_cast<float>(width) / height, 0.1f, 5.0f);
 }
 
 void Template::onUpdate(const float delta) {
@@ -67,6 +76,12 @@ void Template::onUpdate(const float delta) {
     if (mTimer > 0) {
         mTimer -= delta;
     }
+
+    mShapes[1]->x = 0.15f * std::sin(mTime);
+    mShapes[1]->z = 0.15f * std::cos(mTime);
+
+    mShapes[2]->y = 0.15f * std::sin(mTime);
+    mShapes[2]->z = 0.15f * std::cos(mTime);
 }
 
 void Template::onDraw() {
@@ -92,7 +107,7 @@ void Template::onTouch(const TouchEvent& event) {
             return;
         }
 
-        mTimer = 0.5f;
+        mTimer = 0.2f;
     } else if (event.getType() == TouchEvent::Move) {
         const float k = 1.0f;
         auto dx = k * (event.getX() - mX);
