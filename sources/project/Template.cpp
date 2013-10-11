@@ -1,12 +1,13 @@
 #include "Template.h"
+
 #include "Model.h"
+#include "Sphere.h"
 
 #include <RenderDevice.h>
 #include <Log.h>
 #include <TouchEvent.h>
 
 Template::Template() {
-    reset();
 }
 
 void Template::onContextCreated() {
@@ -37,18 +38,19 @@ void Template::onContextCreated() {
 
     mProgram = std::unique_ptr<ShaderProgram>(new ShaderProgram(vShaderSrc, fShaderSrc));
 
-    glGenBuffers(1, &mTrianglesVbo);
-    glGenBuffers(1, &mLinesVbo);
-    fillVbo();
-
     RenderDevice::clearColor(0, 0, 0, 1);
     glEnable(GL_DEPTH_TEST);
+
+    //  Scene objects
+    mShapes.push_back(std::unique_ptr<Shape>(new Sphere(0.1f, 5)));
+    auto sphere = new Sphere(0.05f, 4);
+    sphere->x = 0.1f;
+    mShapes.push_back(std::unique_ptr<Shape>(sphere));
 }
 
 void Template::onContextLost() {
     mProgram.reset();
-    mTrianglesVbo = 0;
-    mLinesVbo = 0;
+    mShapes.clear();
 }
 
 void Template::onResize(const int width, const int height) {
@@ -70,20 +72,17 @@ void Template::onUpdate(const float delta) {
 void Template::onDraw() {
     RenderDevice::clear();
 
-    if (wireframe) {
-        RenderDevice::draw(mLinesVbo, mLines.size() * 2, GL_LINES, *mProgram.get());
-    } else {
-        RenderDevice::draw(mTrianglesVbo, mTriangles.size() * 3, GL_TRIANGLES, *mProgram.get());
+    RenderDevice::begin(mProgram.get());
+
+    for (auto& shape : mShapes) {
+        shape->draw(wireframe);
     }
+
+    RenderDevice::end();
 }
 
 void Template::onTouch(const TouchEvent& event) {
     if (event.getType() == TouchEvent::Down) {
-        if (mTimer > 0) {
-            subdiv();
-            fillVbo();
-            return;
-        }
         mX = event.getX();
         mY = event.getY();
 
@@ -102,73 +101,6 @@ void Template::onTouch(const TouchEvent& event) {
         mX = event.getX();
         mY = event.getY();
     }
-}
-
-bool Template::onBackPressed() {
-    reset();
-    fillVbo();
-
-    return true;
-}
-
-void Template::fillVbo() {
-    glBindBuffer(GL_ARRAY_BUFFER, mTrianglesVbo);
-    glBufferData(GL_ARRAY_BUFFER, mTriangles.size() * sizeof(decltype(mTriangles)::value_type),
-                 mTriangles.data(), GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ARRAY_BUFFER, mLinesVbo);
-    glBufferData(GL_ARRAY_BUFFER, mLines.size() * sizeof(decltype(mLines)::value_type),
-                 mLines.data(), GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-}
-
-void Template::reset() {
-    std::vector<Triangle> triangles;
-
-    triangles.push_back({ { -0.1f, -0.1f, -0.1f }, { 0.1f, 0.1f, -0.1f }, { 0.1f, -0.1f, -0.1f } });
-    triangles.push_back({ { -0.1f, -0.1f, -0.1f }, { 0.1f, 0.1f, -0.1f }, { -0.1f, 0.1f, -0.1f } });
-    triangles.push_back({ { -0.1f, 0.1f, -0.1f }, { 0.1f, 0.1f, 0.1f }, { 0.1f, 0.1f, -0.1f } });
-    triangles.push_back({ { -0.1f, 0.1f, -0.1f }, { 0.1f, 0.1f, 0.1f }, { -0.1f, 0.1f, 0.1f } });
-    triangles.push_back({ { 0.1f, -0.1f, -0.1f }, { 0.1f, 0.1f, 0.1f }, { 0.1f, -0.1f, 0.1f } });
-    triangles.push_back({ { 0.1f, -0.1f, -0.1f }, { 0.1f, 0.1f, 0.1f }, { 0.1f, 0.1f, -0.1f } });
-    triangles.push_back({ { -0.1f, -0.1f, -0.1f }, { 0.1f, -0.1f, 0.1f }, { -0.1f, -0.1f, 0.1f } });
-    triangles.push_back({ { -0.1f, -0.1f, -0.1f }, { 0.1f, -0.1f, 0.1f }, { 0.1f, -0.1f, -0.1f } });
-    triangles.push_back({ { -0.1f, -0.1f, -0.1f }, { -0.1f, 0.1f, 0.1f }, { -0.1f, 0.1f, -0.1f } });
-    triangles.push_back({ { -0.1f, -0.1f, -0.1f }, { -0.1f, 0.1f, 0.1f }, { -0.1f, -0.1f, 0.1f } });
-    triangles.push_back({ { -0.1f, -0.1f, 0.1f }, { 0.1f, 0.1f, 0.1f }, { -0.1f, 0.1f, 0.1f } });
-    triangles.push_back({ { -0.1f, -0.1f, 0.1f }, { 0.1f, 0.1f, 0.1f }, { 0.1f, -0.1f, 0.1f } });
-
-    mTriangles.swap(triangles);
-
-    createLine();
-}
-
-void Template::subdiv() {
-    std::vector<Triangle> newTriangles;
-    for (auto& t : mTriangles) {
-        auto mid = (t.a + t.b) / 2;
-        mid = mid * length(t.a) / length(mid);
-        newTriangles.push_back({ t.a, t.c, mid });
-        newTriangles.push_back({ t.b, t.c, mid });
-    }
-
-    mTriangles.swap(newTriangles);
-
-    createLine();
-}
-
-void Template::createLine() {
-    std::vector<Line> lines;
-    lines.reserve(mTriangles.size() * 3);
-
-    for (auto& t : mTriangles) {
-        lines.push_back({ t.a, t.b });
-        lines.push_back({ t.b, t.c });
-        lines.push_back({ t.c, t.a });
-    }
-
-    mLines.swap(lines);
 }
 
 void Template::up(const float degrees) {

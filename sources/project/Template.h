@@ -11,6 +11,8 @@
 #include <memory>
 #include <vector>
 
+class Shape;
+
 class Template : public Application {
 public:
     Template();
@@ -21,15 +23,8 @@ public:
     virtual void onUpdate(const float delta) override;
     virtual void onDraw() override;
     virtual void onTouch(const TouchEvent& event) override;
-    virtual bool onBackPressed() override;
 
 private:
-    void fillVbo();
-
-    void reset();
-    void subdiv();
-    void createLine();
-
     void up(const float degrees);
     void left(const float degrees);
 
@@ -39,18 +34,14 @@ private:
     float mX;
     float mY;
 
-    glm::vec3 mEye = glm::vec3(0, 0, -0.5f);
+    glm::vec3 mEye = glm::vec3(0, 0, 0.5f);
     glm::vec3 mUp = glm::vec3(0, 1.0f, 0);
 
     float mTimer = 0;
 
     bool wireframe = true;
 
-    std::vector<Triangle> mTriangles;
-    std::vector<Line> mLines;
-
-    GLuint mTrianglesVbo = 0;
-    GLuint mLinesVbo = 0;
+    std::vector<std::unique_ptr<Shape>> mShapes;
 };
 
 #endif /* Template_h */

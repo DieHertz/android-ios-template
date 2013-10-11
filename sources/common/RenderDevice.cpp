@@ -4,6 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+const ShaderProgram* RenderDevice::program = nullptr;
 glm::mat4 RenderDevice::model;
 glm::mat4 RenderDevice::view;
 glm::mat4 RenderDevice::projection;
@@ -37,21 +38,40 @@ void RenderDevice::perspective(const float fovy, const float aspect,
     modelViewProjection = projection * modelView;
 }
 
-void RenderDevice::begin(const ShaderProgram& program) {
-    program.use();
+void RenderDevice::translate(const float x, const float y, const float z) {
+    auto transformation(glm::translate(glm::mat4(), glm::vec3(x, y, z)));
+    
+    model = model * transformation;
+    modelView = modelView * transformation;
+    modelViewProjection = modelViewProjection * transformation;
 
-    auto mvLoc = program.getUniformLocation("uModelView");
-    auto mvpLoc = program.getUniformLocation("uModelViewProjection");
+    if (program) {
+        auto mvLoc = program->getUniformLocation("uModelView");
+        auto mvpLoc = program->getUniformLocation("uModelViewProjection");
+
+        glUniformMatrix4fv(mvLoc, 1, GL_FALSE, glm::value_ptr(modelView));
+        glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(modelViewProjection));
+    }
+}
+
+void RenderDevice::begin(const ShaderProgram* program) {
+    RenderDevice::program = program;
+    program->use();
+
+    auto mvLoc = program->getUniformLocation("uModelView");
+    auto mvpLoc = program->getUniformLocation("uModelViewProjection");
 
     glUniformMatrix4fv(mvLoc, 1, GL_FALSE, glm::value_ptr(modelView));
     glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, glm::value_ptr(modelViewProjection));
 }
 
-void RenderDevice::draw(const GLuint vbo, const int points, const GLenum type,
-                        const ShaderProgram& program) {
-    begin(program);
+void RenderDevice::end() {
+    glUseProgram(0);
+    program = nullptr;
+}
 
-    auto positionLoc = program.getAttribLocation("aPosition");
+void RenderDevice::draw(const GLuint vbo, const int points, const GLenum type) {
+    auto positionLoc = program->getAttribLocation("aPosition");
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glVertexAttribPointer(positionLoc, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
     glEnableVertexAttribArray(positionLoc);
@@ -63,11 +83,8 @@ void RenderDevice::draw(const GLuint vbo, const int points, const GLenum type,
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void RenderDevice::draw(const float* vertices, const int points, const GLenum type,
-                        const ShaderProgram& program) {
-    begin(program);
-
-    auto positionLoc = program.getAttribLocation("aPosition");
+void RenderDevice::draw(const float* vertices, const int points, const GLenum type) {
+    auto positionLoc = program->getAttribLocation("aPosition");
     glVertexAttribPointer(positionLoc, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     glEnableVertexAttribArray(positionLoc);
 

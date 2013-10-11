@@ -21,14 +21,16 @@ public:
     static void perspective(const float fovy, const float aspect,
                             const float zNear, const float zFar);
 
-    static void begin(const ShaderProgram& program);
+    static void translate(const float x, const float y, const float z);
+    
+    static void begin(const ShaderProgram* program);
+    static void end();
 
-    static void draw(const GLuint vbo, const int points, const GLenum type,
-                     const ShaderProgram& program);
-    static void draw(const float* vertices, const int points, const GLenum type,
-                     const ShaderProgram& program);
+    static void draw(const GLuint vbo, const int points, const GLenum type);
+    static void draw(const float* vertices, const int points, const GLenum type);
 
 private:
+    static const ShaderProgram* program;
     static glm::mat4 model;
     static glm::mat4 view;
     static glm::mat4 projection;
