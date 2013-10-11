@@ -86,6 +86,12 @@ void Template::onTouch(const TouchEvent& event) {
         mX = event.getX();
         mY = event.getY();
 
+        if (mTimer > 0) {
+            wireframe = !wireframe;
+            mTimer = 0;
+            return;
+        }
+
         mTimer = 0.5f;
     } else if (event.getType() == TouchEvent::Move) {
         const float k = 1.0f;
