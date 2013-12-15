@@ -18,7 +18,10 @@ LOCAL_SRC_FILES  := \
     $(COMMON_SRC_DIR)/GlHelper.cpp \
     $(COMMON_SRC_DIR)/ShaderProgram.cpp \
     $(COMMON_SRC_DIR)/RenderDevice.cpp \
-    $(COMMON_SRC_DIR)/Timer.cpp
+    $(COMMON_SRC_DIR)/Timer.cpp \
+    $(COMMON_SRC_DIR)/physics/Vector3.cpp \
+    $(COMMON_SRC_DIR)/physics/Mass.cpp \
+    $(COMMON_SRC_DIR)/physics/World.cpp
 
 LOCAL_SRC_FILES += \
     $(PROJECT_SRC_DIR)/EntryPoint.cpp \

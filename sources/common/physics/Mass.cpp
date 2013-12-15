@@ -7,7 +7,7 @@
 //
 
 #include "Mass.h"
-#include <math.h>
+#include <cmath>
 
 Mass::Mass(float _m, float _radius, Vector3 _r, Vector3 _v) {
     this->setM(_m);
@@ -36,11 +36,10 @@ void Mass::addAcceleration(const Vector3 &acc) {
 }
 
 void Mass::resetAcceleration() {
-    a = {0, 0, 0};
+    a = { 0, 0, 0 };
 }
 
 void Mass::calculate(float dt) {
-    
     if (this->type != MassType::Static)
         eulerStep(dt);
     
@@ -48,11 +47,10 @@ void Mass::calculate(float dt) {
 }
 
 void Mass::eulerStep(float dt) {
-    
     v += a*dt;
     r += v*dt;
 
-    a = {0, 0, 0};
+    a = { 0, 0, 0 };
 }
 
 void Mass::verletStep(float dt) {
@@ -63,7 +61,7 @@ void Mass::verletStep(float dt) {
     rt = r;
     r += dr*(dt/dtt) + a*(dt*dt);
 
-    a = {0, 0, 0};
+    a = { 0, 0, 0 };
 }
 
 void Mass::move(Vector3 d) {
@@ -121,12 +119,12 @@ void Mass::checkWalls(float dt) {
     v*=0.995;
 }
 
-void Mass::collide(Mass *a, Mass *b) {
+void Mass::collide(Mass* a, Mass* b) {
     if (a == b)
         return;
     
     float min = a->radius + b->radius;
-    if (fabsf(a->r.y - b->r.y) > (min - 1e-3))
+    if (std::abs(a->r.y - b->r.y) > (min - 1e-3))
         return;
     
     float minSQ = min*min;
@@ -157,7 +155,4 @@ void Mass::collide(Mass *a, Mass *b) {
     
     a->v = a->v - v1 + (v1*(a->m - b->m) + v2*2*b->m)/(a->m + b->m)*kn;
     b->v = b->v - v2 + (v2*(b->m - a->m) + v1*2*a->m)/(a->m + b->m)*kn;
-}
-
-Mass::~Mass() {
 }

@@ -22,14 +22,12 @@ public:
     ~World();
     
 private:
-    void checkMasses(void);
-    void bruteForce(void);
-    void sweepPrune(void);
+    void checkMasses();
+    void bruteForce();
+    void sweepPrune();
     
     std::vector<Mass*> masses;
     Vector3 g;
 };
-
-
 
 #endif /* defined(__template__World__) */

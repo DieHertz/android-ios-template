@@ -2,12 +2,15 @@
 
 #include "Model.h"
 #include "Sphere.h"
-#include "Mass.h"
-#include "World.h"
 
 #include <RenderDevice.h>
 #include <Log.h>
 #include <TouchEvent.h>
+#include <physics/Mass.h>
+#include <physics/World.h>
+
+#include <chrono>
+#include <random>
 
 Template::Template() {
 }
@@ -54,28 +57,35 @@ void Template::onContextCreated() {
 const float scale = 0.05;
 
 void Template::createScene() {
-
-    world = new World();
+    mWorld = std::unique_ptr<World>(new World);
     
     const int objectsCount = 20;
-    const float radius = 0.5;
-    for (int i = 0; i < objectsCount; i++) {
-        auto rnd = [](float from, float to){ return from + (to - from)*arc4random_uniform(100)/100.0; };
+    const float radius = 0.5f;
+
+    auto rnd = [] (const float from, const float to) {
+        std::random_device device;
+        std::uniform_real_distribution<float> distr(from, to);
+        return distr(device);
+    };
+
+    for (int i = 0; i < objectsCount; ++i) {
         Vector3 randomPos = { rnd(-2, 2), rnd(-2, 2), rnd(-2, 2) };
         
-        Mass* mass = new Mass(1, radius, randomPos, {0, 0, 0});
-        world->addMass(mass);
+        auto mass = new Mass(1, radius, randomPos, { 0, 0, 0 });
+        mWorld->addMass(mass);
         
         auto shape = new Sphere(mass->radius * scale, 5);
-        mShapes.push_back(shape);
+        mShapes.push_back(std::unique_ptr<Shape>(shape));
         
-        mObjects.push_back({shape, mass});
+        mObjects.push_back({ shape, mass });
     }
 }
 
 void Template::onContextLost() {
     mProgram.reset();
+
     mShapes.clear();
+    mObjects.clear();
 }
 
 void Template::onResize(const int width, const int height) {
@@ -93,7 +103,7 @@ void Template::onUpdate(const float delta) {
         mTimer -= delta;
     }
     
-    world->step(delta);
+    mWorld->step(delta);
     
     for (auto& object : mObjects) {
         object.shape->x = object.mass->r.x * scale;

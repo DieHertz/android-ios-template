@@ -2,6 +2,8 @@
 #define Template_h
 
 #include "Geometry.h"
+#include "SceneObject.h"
+#include "Shape.h"
 
 #include <Application.h>
 #include <ShaderProgram.h>
@@ -10,9 +12,6 @@
 
 #include <memory>
 #include <vector>
-#include "SceneObject.h"
-
-#include "Shape.h"
 
 class World;
 class Mass;
@@ -47,9 +46,10 @@ private:
 
     bool wireframe = true;
 
-    std::vector<Shape*> mShapes;
+    std::vector<std::unique_ptr<Shape>> mShapes;
     std::vector<SceneObject> mObjects;
-    World* world;
+    
+    std::unique_ptr<World> mWorld;
 };
 
 #endif /* Template_h */
