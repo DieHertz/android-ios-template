@@ -7,4 +7,6 @@
 #include <OpenGLES/ES2/gl.h>
 #endif
 
+#define glsl(src) "#version 100\n" # src
+
 #endif /* Gl_h */

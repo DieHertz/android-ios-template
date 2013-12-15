@@ -18,33 +18,29 @@ Template::Template() {
 void Template::onContextCreated() {
     Log::info("%s: %s", __FUNCTION__, glGetString(GL_VERSION));
 
-    const char* vShaderSrc {
-        "#version 100\n"
+    const char* vShaderSrc = glsl(
+        attribute vec3 aPosition;
 
-        "attribute vec3 aPosition;"
+        uniform mat4 uModelViewProjection;
+        uniform mat4 uModelView;
 
-        "uniform mat4 uModelViewProjection;"
-        "uniform mat4 uModelView;"
+        varying float depth;
 
-        "varying float depth;"
+        void main() {
+            gl_Position = uModelViewProjection * vec4(aPosition, 1);
+            depth = 0.2 * (abs(gl_DepthRange.diff) * gl_Position.w) / gl_Position.z;
+        }
+    );
 
-        "void main() {"
-            "gl_Position = uModelViewProjection * vec4(aPosition, 1);"
-            "depth = 0.2 * (abs(gl_DepthRange.diff) * gl_Position.w) / gl_Position.z;"
-        "}"
-    };
+    const char* fShaderSrc = glsl(
+        precision mediump float;
 
-    const char* fShaderSrc {
-        "#version 100\n"
+        varying float depth;
 
-        "precision mediump float;"
-
-        "varying float depth;"
-
-        "void main() {"
-            "gl_FragColor = vec4(0.6, 0.2, 0.3, 1) + vec4(depth, depth, depth, 1);"
-        "}"
-    };
+        void main() {
+            gl_FragColor = vec4(0.6, 0.2, 0.3, 1) + vec4(depth, depth, depth, 1);
+        }
+    );
 
     mProgram = std::unique_ptr<ShaderProgram>(new ShaderProgram(vShaderSrc, fShaderSrc));
 
