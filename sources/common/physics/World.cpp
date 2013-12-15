@@ -13,14 +13,6 @@
 #include <time.h>
 #include <stdlib.h>
 
-//using std::vector;
-
-int collides;
-
-const float radius = 0.5;
-const float minDist = (radius*2);
-const float minDistSQ = minDist*minDist;
-
 World::World() {
     g = {0, -9.80, 0};
 }
@@ -36,6 +28,9 @@ void World::bruteForce() {
 }
 
 void World::sweepPrune() {
+    const float radius = 0.5;
+    const float minDist = (radius*2);
+    
     std::sort(masses.begin() + 1, masses.end(), Mass::comparePtr);
     for (int i = 0; i < masses.size() - 1; i++)
         for (int j = i + 1; j < masses.size() && masses[i]->r.x + 2*minDist > masses[j]->r.x; j++)
@@ -55,8 +50,8 @@ void World::step(float dt) {
     }
     
     for (int j = 0; j < 3; j++) {
-        //bruteForce();
-        sweepPrune();
+        bruteForce();
+        //sweepPrune();
     }
 }
 

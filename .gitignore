@@ -22,6 +22,7 @@ $RECYCLE.BIN/
 
 # Xcode shit
 *.xcuserstate
+*.xcworkspace
 *.xcworkspacedata
 xcuserdata
 *.swp

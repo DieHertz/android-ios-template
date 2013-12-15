@@ -71,14 +71,8 @@ void Mass::move(Vector3 d) {
 }
 
 void Mass::checkWalls(float dt) {
-    
-//    if (r.y < 0) {
-//        v.y = 0;
-//        r.y = 0;
-//    }
-    
-    float kn = 0.9;
-    float k = 0.95;
+    const float kn = 0.9;
+    const float k = 0.95;
 
     const float d = 3;
     
@@ -128,10 +122,6 @@ void Mass::checkWalls(float dt) {
 }
 
 void Mass::collide(Mass *a, Mass *b) {
-    
-    //    if (a->invM == 0 || b->invM == 0)
-    //        return;
-    
     if (a == b)
         return;
     
@@ -144,26 +134,24 @@ void Mass::collide(Mass *a, Mass *b) {
     Vector3 delta = b->r - a->r;
     Vector3 v = b->v - a->v;
     
-    // проверка направления движения
+    // check move direction
     if (v*delta >= 0.0)
         return;
     
-    float lengthSQ = delta.lengthSQ();
+    const float lengthSQ = delta.lengthSQ();
     
     if (lengthSQ < 1e-8)
         return;
     if (lengthSQ > minSQ)
         return;
     
-    Vector3 d;
     Vector3 n = delta.n();
-    //не на полную длину, ограничить
-    d = (n*min - delta)*0.7;//*1.01;
+    Vector3 d = (n*min - delta)*0.7;
 
     a->r -= d/2;
     b->r += d/2;
 
-    float kn = 0.95;
+    const float kn = 0.95;
     Vector3 v1 = n*(a->v*n);
     Vector3 v2 = n*(b->v*n);
     

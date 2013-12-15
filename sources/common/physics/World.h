@@ -18,19 +18,15 @@ class World {
 public:
     World();
     void addMass(Mass* m);
-    std::vector<Mass*> masses;
-    
     void step(float dt);
-    
-    void makeFountain(void);
-    void fountainAddMass();
-    
     ~World();
+    
 private:
     void checkMasses(void);
     void bruteForce(void);
     void sweepPrune(void);
     
+    std::vector<Mass*> masses;
     Vector3 g;
 };
 
