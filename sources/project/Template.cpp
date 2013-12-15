@@ -50,8 +50,6 @@ void Template::onContextCreated() {
     createScene();
 }
 
-const float scale = 0.05;
-
 void Template::createScene() {
     mWorld = std::unique_ptr<World>(new World);
     

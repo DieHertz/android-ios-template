@@ -50,6 +50,8 @@ private:
     std::vector<SceneObject> mObjects;
     
     std::unique_ptr<World> mWorld;
+
+    static constexpr float scale = 0.05f;
 };
 
 #endif /* Template_h */
