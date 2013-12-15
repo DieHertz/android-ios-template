@@ -2,6 +2,8 @@
 
 #include "Model.h"
 #include "Sphere.h"
+#include "Mass.h"
+#include "World.h"
 
 #include <RenderDevice.h>
 #include <Log.h>
@@ -46,15 +48,29 @@ void Template::onContextCreated() {
     RenderDevice::clearColor(0, 0, 0, 1);
     glEnable(GL_DEPTH_TEST);
 
-    //  Scene objects
-    mShapes.push_back(std::unique_ptr<Shape>(new Sphere(0.1f, 5)));
-    auto sphere1 = new Sphere(0.03f, 4);
-    sphere1->x = 0.15f;
-    mShapes.push_back(std::unique_ptr<Shape>(sphere1));
+    createScene();
+}
 
-    auto sphere2 = new Sphere(0.03f, 4);
-    sphere2->z = 0.15f;
-    mShapes.push_back(std::unique_ptr<Shape>(sphere2));
+const float scale = 0.05;
+
+void Template::createScene() {
+
+    world = new World();
+    
+    const int objectsCount = 20;
+    const float radius = 0.5;
+    for (int i = 0; i < objectsCount; i++) {
+        auto rnd = [](float from, float to){ return from + (to - from)*arc4random_uniform(100)/100.0; };
+        Vector3 randomPos = { rnd(-2, 2), rnd(-2, 2), rnd(-2, 2) };
+        
+        Mass* mass = new Mass(1, radius, randomPos, {0, 0, 0});
+        world->addMass(mass);
+        
+        auto shape = new Sphere(mass->radius * scale, 5);
+        mShapes.push_back(shape);
+        
+        mObjects.push_back({shape, mass});
+    }
 }
 
 void Template::onContextLost() {
@@ -76,12 +92,14 @@ void Template::onUpdate(const float delta) {
     if (mTimer > 0) {
         mTimer -= delta;
     }
-
-    mShapes[1]->x = 0.15f * std::sin(mTime);
-    mShapes[1]->z = 0.15f * std::cos(mTime);
-
-    mShapes[2]->y = 0.15f * std::sin(mTime);
-    mShapes[2]->z = 0.15f * std::cos(mTime);
+    
+    world->step(delta);
+    
+    for (auto& object : mObjects) {
+        object.shape->x = object.mass->r.x * scale;
+        object.shape->y = object.mass->r.y * scale;
+        object.shape->z = object.mass->r.z * scale;
+    }
 }
 
 void Template::onDraw() {

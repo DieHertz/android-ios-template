@@ -10,8 +10,12 @@
 
 #include <memory>
 #include <vector>
+#include "SceneObject.h"
 
-class Shape;
+#include "Shape.h"
+
+class World;
+class Mass;
 
 class Template : public Application {
 public:
@@ -27,6 +31,8 @@ public:
 private:
     void up(const float degrees);
     void left(const float degrees);
+    
+    void createScene();
 
     std::unique_ptr<ShaderProgram> mProgram;
     float mTime = 0;
@@ -41,7 +47,9 @@ private:
 
     bool wireframe = true;
 
-    std::vector<std::unique_ptr<Shape>> mShapes;
+    std::vector<Shape*> mShapes;
+    std::vector<SceneObject> mObjects;
+    World* world;
 };
 
 #endif /* Template_h */
