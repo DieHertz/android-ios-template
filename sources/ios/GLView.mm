@@ -23,16 +23,16 @@
         [self setupRenderBuffer];
         [self setupFrameBuffer];
         [self setupDisplayLink];
-        Application::getInstance()->onSurfaceCreated();
-        Application::getInstance()->onResize(frame.size.width, frame.size.height);
+        Application::getInstance()->_onSurfaceCreated();
+        Application::getInstance()->_onResize(frame.size.width, frame.size.height);
         self.multipleTouchEnabled = YES;
     }
     return self;
 }
 
 - (void)render:(CADisplayLink*)displayLink {
-    Application::getInstance()->onUpdate();
-    Application::getInstance()->onDraw();
+    Application::getInstance()->_onUpdate();
+    Application::getInstance()->_onDraw();
     [_context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
@@ -89,7 +89,7 @@
     for (int i = 0; i < sortedTouches.count; i++) {
         UITouch *touch = [sortedTouches objectAtIndex:i];
         CGPoint p = [touch locationInView:self];
-        Application::getInstance()->onTouch(TouchEvent(p.x, p.y, touchEventType, i));
+        Application::getInstance()->_onTouch(TouchEvent(p.x, p.y, touchEventType, i));
     }
 }
 

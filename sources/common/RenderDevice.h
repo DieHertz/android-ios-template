@@ -9,7 +9,6 @@ class ShaderProgram;
 
 class RenderDevice {
     RenderDevice() = delete;
-    RenderDevice(const RenderDevice&) = delete;
 
 public:
     static void clearColor(const float r, const float g, const float b, const float a);

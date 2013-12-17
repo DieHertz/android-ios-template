@@ -1,61 +1,51 @@
 #include "Application.h"
+#include "ui/WidgetManager.h"
 
 #include <memory>
-
-Application::Application() : mContextCreated(false) {
-
-}
 
 Application::~Application() {
     
 }
 
-void Application::onCreate() {
-
+void Application::_onCreate() {
+    onCreate();
 }
 
-void Application::onSurfaceCreated() {
+void Application::_onSurfaceCreated() {
     if (mContextCreated) {
         onContextLost();
     }
 
     onContextCreated();
+    WidgetManager::instance()->onContextCreated();
     mContextCreated = true;
     mTimer.reset();
 }
 
-void Application::onContextCreated() {
-    
+void Application::_onResize(const int width, const int height) {
+    onResize(width, height);
+    WidgetManager::instance()->onResize(width, height);
 }
 
-void Application::onContextLost() {
-    
+bool Application::_onBackPressed() {
+    return onBackPressed();
 }
 
-void Application::onResize(const int width, const int height) {
-    
-}
-
-void Application::onUpdate() {
+void Application::_onUpdate() {
     mTimer.update();
-    onUpdate(mTimer.elapsed());
+    const auto elapsed = mTimer.elapsed();
+    onUpdate(elapsed);
+    WidgetManager::instance()->onUpdate(elapsed);
 }
 
-void Application::onUpdate(const float delta) {
-    
+void Application::_onDraw() {
+    onDraw();
+    WidgetManager::instance()->onDraw();
 }
 
-void Application::onDraw() {
-    
-}
-
-void Application::onTouch(const TouchEvent& event) {
-    
-}
-
-
-bool Application::onBackPressed() {
-    return false;
+void Application::_onTouch(TouchEvent event) {
+    onTouch(event);
+    if (!event.isAccepted()) WidgetManager::instance()->onTouch(event);
 }
 
 Application* Application::getInstance() {

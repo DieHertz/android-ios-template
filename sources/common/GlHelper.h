@@ -5,7 +5,6 @@
 
 class GlHelper {
     GlHelper() = delete;
-    GlHelper(const GlHelper&) = delete;
 
 public:
     static GLuint compile(const char* src, GLenum type);

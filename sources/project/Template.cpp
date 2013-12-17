@@ -9,10 +9,12 @@
 #include <physics/Mass.h>
 #include <physics/World.h>
 
-#include <chrono>
 #include <random>
 
-Template::Template() {
+void Template::onCreate() {
+    widgetOne.setGeometry({ 0, 0, 150, 100 });
+    widgetTwo.setGeometry({ 0, 200, 50, 50 });
+    widgetThree.setGeometry({ 200, 400, 150, 100 });
 }
 
 void Template::onContextCreated() {
@@ -118,7 +120,7 @@ void Template::onDraw() {
     RenderDevice::end();
 }
 
-void Template::onTouch(const TouchEvent& event) {
+void Template::onTouch(TouchEvent& event) {
     if (event.getType() == TouchEvent::Down) {
         mX = event.getX();
         mY = event.getY();
