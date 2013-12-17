@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3E364D5D18607720002CAC8A /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E364D5B18607720002CAC8A /* Vector3.cpp */; };
 		3E364D601860778E002CAC8A /* MathFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E364D5E1860778E002CAC8A /* MathFunctions.cpp */; };
+		3E5F7B6D1860D4DC00B895A2 /* Painter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F7B671860D4DC00B895A2 /* Painter.cpp */; };
+		3E5F7B6E1860D4DC00B895A2 /* Widget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F7B691860D4DC00B895A2 /* Widget.cpp */; };
+		3E5F7B6F1860D4DC00B895A2 /* WidgetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F7B6B1860D4DC00B895A2 /* WidgetManager.cpp */; };
 		3ED341FA185CD5E200895572 /* Mass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3ED341F8185CD5E200895572 /* Mass.cpp */; };
 		3ED341FD185CDD8F00895572 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3ED341FB185CDD8F00895572 /* World.cpp */; };
 		569CCF0E17E6F5050003F210 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 569CCF0C17E6F5050003F210 /* Timer.cpp */; };
@@ -39,6 +42,15 @@
 		3E364D5C18607720002CAC8A /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector3.h; path = math/Vector3.h; sourceTree = "<group>"; };
 		3E364D5E1860778E002CAC8A /* MathFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MathFunctions.cpp; path = math/MathFunctions.cpp; sourceTree = "<group>"; };
 		3E364D5F1860778E002CAC8A /* MathFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MathFunctions.h; path = math/MathFunctions.h; sourceTree = "<group>"; };
+		3E5F7B631860D4DC00B895A2 /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
+		3E5F7B641860D4DC00B895A2 /* Rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rect.h; sourceTree = "<group>"; };
+		3E5F7B651860D4DC00B895A2 /* Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Size.h; sourceTree = "<group>"; };
+		3E5F7B671860D4DC00B895A2 /* Painter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Painter.cpp; sourceTree = "<group>"; };
+		3E5F7B681860D4DC00B895A2 /* Painter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Painter.h; sourceTree = "<group>"; };
+		3E5F7B691860D4DC00B895A2 /* Widget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Widget.cpp; sourceTree = "<group>"; };
+		3E5F7B6A1860D4DC00B895A2 /* Widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Widget.h; sourceTree = "<group>"; };
+		3E5F7B6B1860D4DC00B895A2 /* WidgetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WidgetManager.cpp; sourceTree = "<group>"; };
+		3E5F7B6C1860D4DC00B895A2 /* WidgetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidgetManager.h; sourceTree = "<group>"; };
 		3ED341F8185CD5E200895572 /* Mass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Mass.cpp; path = physics/Mass.cpp; sourceTree = "<group>"; };
 		3ED341F9185CD5E200895572 /* Mass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mass.h; path = physics/Mass.h; sourceTree = "<group>"; };
 		3ED341FB185CDD8F00895572 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = World.cpp; path = physics/World.cpp; sourceTree = "<group>"; };
@@ -103,6 +115,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E5F7B661860D4DC00B895A2 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				3E5F7B671860D4DC00B895A2 /* Painter.cpp */,
+				3E5F7B681860D4DC00B895A2 /* Painter.h */,
+				3E5F7B691860D4DC00B895A2 /* Widget.cpp */,
+				3E5F7B6A1860D4DC00B895A2 /* Widget.h */,
+				3E5F7B6B1860D4DC00B895A2 /* WidgetManager.cpp */,
+				3E5F7B6C1860D4DC00B895A2 /* WidgetManager.h */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 		3E80BC1B185CC567004BF03B /* physics */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +217,10 @@
 		D66DBA2D17E5DD8B00C12B9C /* common */ = {
 			isa = PBXGroup;
 			children = (
+				3E5F7B631860D4DC00B895A2 /* Point.h */,
+				3E5F7B641860D4DC00B895A2 /* Rect.h */,
+				3E5F7B651860D4DC00B895A2 /* Size.h */,
+				3E5F7B661860D4DC00B895A2 /* ui */,
 				3EA71F4D186075C3004EF1A1 /* Math */,
 				3E80BC1B185CC567004BF03B /* physics */,
 				569CCF0C17E6F5050003F210 /* Timer.cpp */,
@@ -315,9 +344,12 @@
 				D6B1967917E5F94B0044515C /* GLView.mm in Sources */,
 				D6B1967A17E5F94B0044515C /* main.m in Sources */,
 				D6B1967B17E5F94B0044515C /* ViewController.m in Sources */,
+				3E5F7B6E1860D4DC00B895A2 /* Widget.cpp in Sources */,
 				D6B4398A17E601DD00A82721 /* ShaderProgram.cpp in Sources */,
+				3E5F7B6D1860D4DC00B895A2 /* Painter.cpp in Sources */,
 				D6EEB1E717E63B0800D06D2C /* RenderDevice.cpp in Sources */,
 				D6EEB1EC17E63B1C00D06D2C /* EntryPoint.cpp in Sources */,
+				3E5F7B6F1860D4DC00B895A2 /* WidgetManager.cpp in Sources */,
 				3ED341FD185CDD8F00895572 /* World.cpp in Sources */,
 				3ED341FA185CD5E200895572 /* Mass.cpp in Sources */,
 				D6EEB1ED17E63B1C00D06D2C /* Template.cpp in Sources */,

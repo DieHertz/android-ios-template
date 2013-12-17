@@ -15,6 +15,10 @@ void Template::onCreate() {
     widgetOne.setGeometry({ 0, 0, 150, 100 });
     widgetTwo.setGeometry({ 0, 200, 50, 50 });
     widgetThree.setGeometry({ 200, 400, 150, 100 });
+    
+    for (auto i : {1, 2, 3}) {
+        printf("i = %d", i);
+    }
 }
 
 void Template::onContextCreated() {
