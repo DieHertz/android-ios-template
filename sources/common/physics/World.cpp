@@ -8,8 +8,8 @@
 
 #include "World.h"
 #include "Mass.h"
-#include <math/MathFunctions.h>
-#include <math/Vector3.h>
+#include "math/Vector3.h"
+#include "math/MathFunctions.h"
 
 #include <algorithm>
 
@@ -23,7 +23,7 @@ void World::addMass(Mass* m) {
     masses.push_back(m);
 }
 
-void World::setBoundary(Vector3 min, Vector3 max) {
+void World::setBoundary(const Vector3 &min, const Vector3 &max) {
     boundaryMin = min;
     boundaryMax = max;
 }

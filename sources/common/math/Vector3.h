@@ -11,12 +11,9 @@
 
 class Vector3 {
 public:
-    union {
-        float data[3];
-        struct {
-            float x, y, z;
-        };
-    };
+    float x;
+    float y;
+    float z;
     
     Vector3() : x(0), y(0), z(0) {}
     Vector3(const Vector3& v) : x(v.x), y(v.y), z(v.z) {}

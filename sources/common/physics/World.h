@@ -9,8 +9,8 @@
 #ifndef __template__World__
 #define __template__World__
 
+#include "math/Vector3.h"
 #include <vector>
-#include "Vector3.h"
 
 class Mass;
 
@@ -19,7 +19,7 @@ public:
     World();
     void addMass(Mass* m);
     void step(float dt);
-    void setBoundary(Vector3 min, Vector3 max);
+    void setBoundary(const Vector3& min, const Vector3& max);
     ~World();
     
 private:
