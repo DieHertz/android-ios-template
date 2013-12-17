@@ -10,28 +10,28 @@ extern "C" {
 #define JNI_NAME(name) Java_com_template_android_NativeInterface_##name
 
 JNIEXPORT void JNI_NAME(onCreate)(JNIEnv*, jclass) {
-    Application::getInstance()->onCreate();
+    Application::getInstance()->_onCreate();
 }
 
 JNIEXPORT void JNI_NAME(onSurfaceCreated)(JNIEnv*, jclass) {
-    Application::getInstance()->onSurfaceCreated();
+    Application::getInstance()->_onSurfaceCreated();
 }
 
 JNIEXPORT void JNI_NAME(onSurfaceChanged)(JNIEnv*, jclass, jint width, jint height) {
-    Application::getInstance()->onResize(width, height);
+    Application::getInstance()->_onResize(width, height);
 }
 
 JNIEXPORT void JNI_NAME(onDrawFrame)(JNIEnv*, jclass) {
-    Application::getInstance()->onUpdate();
-    Application::getInstance()->onDraw();
+    Application::getInstance()->_onUpdate();
+    Application::getInstance()->_onDraw();
 }
 
 JNIEXPORT void JNI_NAME(onTouchEvent)(JNIEnv*, jclass, jfloat x, jfloat y, jint type, jint index) {
-    Application::getInstance()->onTouch(TouchEvent(x, y, static_cast<TouchEvent::Type>(type), index));
+    Application::getInstance()->_onTouch(TouchEvent(x, y, static_cast<TouchEvent::Type>(type), index));
 }
 
 JNIEXPORT jboolean JNI_NAME(onBackPressed)(JNIEnv*, jclass) {
-    return Application::getInstance()->onBackPressed();
+    return Application::getInstance()->_onBackPressed();
 }
 
 #ifdef __cplusplus

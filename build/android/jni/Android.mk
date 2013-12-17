@@ -19,7 +19,11 @@ LOCAL_SRC_FILES  := \
     $(COMMON_SRC_DIR)/ShaderProgram.cpp \
     $(COMMON_SRC_DIR)/RenderDevice.cpp \
     $(COMMON_SRC_DIR)/Timer.cpp \
-    $(COMMON_SRC_DIR)/physics/Vector3.cpp \
+    $(COMMON_SRC_DIR)/ui/Widget.cpp \
+    $(COMMON_SRC_DIR)/ui/WidgetManager.cpp \
+    $(COMMON_SRC_DIR)/ui/Painter.cpp \
+    $(COMMON_SRC_DIR)/math/Vector3.cpp \
+    $(COMMON_SRC_DIR)/math/MathFunctions.cpp \
     $(COMMON_SRC_DIR)/physics/Mass.cpp \
     $(COMMON_SRC_DIR)/physics/World.cpp
 

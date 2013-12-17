@@ -3,7 +3,9 @@
 
 #include <android/log.h>
 
-static const char* tag = "Log";
+namespace {
+    const char* tag = "Log";
+}
 
 class Log {
 public:

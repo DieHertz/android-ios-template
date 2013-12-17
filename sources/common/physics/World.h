@@ -9,8 +9,9 @@
 #ifndef __template__World__
 #define __template__World__
 
+#include "math/Vector3.h"
+
 #include <vector>
-#include "Vector3.h"
 
 class Mass;
 

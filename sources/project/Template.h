@@ -4,28 +4,26 @@
 #include "Geometry.h"
 #include "SceneObject.h"
 #include "Shape.h"
+#include "physics/World.h"
 
 #include <Application.h>
 #include <ShaderProgram.h>
+#include <ui/Widget.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <memory>
 #include <vector>
 
-class World;
-class Mass;
-
 class Template : public Application {
 public:
-    Template();
-
+    virtual void onCreate() override;
     virtual void onContextCreated() override;
     virtual void onContextLost() override;
     virtual void onResize(const int width, const int height) override;
     virtual void onUpdate(const float delta) override;
     virtual void onDraw() override;
-    virtual void onTouch(const TouchEvent& event) override;
+    virtual void onTouch(TouchEvent& event) override;
 
 private:
     void up(const float degrees);
@@ -50,6 +48,10 @@ private:
     std::vector<SceneObject> mObjects;
     
     std::unique_ptr<World> mWorld;
+
+    Widget widgetOne;
+    Widget widgetTwo;
+    Widget widgetThree;
 
     static constexpr float scale = 0.05f;
 };
