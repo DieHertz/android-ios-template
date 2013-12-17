@@ -8,16 +8,48 @@
 
 #include "World.h"
 #include "Mass.h"
-#include "Vector3.h"
+#include <math/MathFunctions.h>
+#include <math/Vector3.h>
 
 #include <algorithm>
 
 World::World() {
     g = { 0, -9.80f, 0 };
+    boundaryMin = { -2, -2, -5 };
+    boundaryMax = {  2,  2,  5 };
 }
 
 void World::addMass(Mass* m) {
     masses.push_back(m);
+}
+
+void World::setBoundary(Vector3 min, Vector3 max) {
+    boundaryMin = min;
+    boundaryMax = max;
+}
+
+void World::checkBoundaryForMass(Mass* mass) {
+    const float dampingNormal = 0.9;
+    const float damping = 0.95;
+    
+    struct {
+        float min;
+        float max;
+        float& target;
+        float& additional;
+    } constraints[] {
+        { boundaryMin.x, boundaryMax.x, mass->r.x, mass->v.x },
+        { boundaryMin.y, boundaryMax.y, mass->r.y, mass->v.y },
+        { boundaryMin.z, boundaryMax.z, mass->r.z, mass->v.z },
+    };
+    
+    for (auto& c : constraints) {
+        if (c.target < c.min || c.target > c.max) {
+            c.additional *= -dampingNormal;
+            mass->v *= damping;
+            c.target = Math::clamp(c.target, c.min, c.max);
+        }
+    }
 }
 
 void World::bruteForce() {
@@ -46,7 +78,7 @@ void World::step(float dt) {
     // calc
     for (auto mass : masses) {
         mass->calculate(dt);
-        // check collisions with walls here
+        checkBoundaryForMass(mass);
     }
     
     for (int j = 0; j < 3; ++j) {

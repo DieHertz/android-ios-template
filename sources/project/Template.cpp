@@ -68,7 +68,7 @@ void Template::createScene() {
         auto mass = new Mass(1, radius, randomPos, { 0, 0, 0 });
         mWorld->addMass(mass);
         
-        auto shape = new Sphere(mass->radius * scale, 5);
+        auto shape = new Sphere(mass->getRadius() * scale, 5);
         mShapes.push_back(std::unique_ptr<Shape>(shape));
         
         mObjects.push_back({ shape, mass });

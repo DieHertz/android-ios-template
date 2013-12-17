@@ -19,15 +19,19 @@ public:
     World();
     void addMass(Mass* m);
     void step(float dt);
+    void setBoundary(Vector3 min, Vector3 max);
     ~World();
     
 private:
     void checkMasses();
     void bruteForce();
     void sweepPrune();
+    void checkBoundaryForMass(Mass* m);
     
     std::vector<Mass*> masses;
     Vector3 g;
+    Vector3 boundaryMin;
+    Vector3 boundaryMax;
 };
 
 #endif /* defined(__template__World__) */

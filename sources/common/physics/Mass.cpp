@@ -9,22 +9,20 @@
 #include "Mass.h"
 #include <cmath>
 
-Mass::Mass(float _m, float _radius, Vector3 _r, Vector3 _v) {
-    this->setM(_m);
-    radius = _radius;
-    links = 0;
-    linksMax = 6;
-    r = _r;
-    v = _v;
-    dr = _v;
-    dtt = 1;
-    rt = Vector3(r - dr);
+Mass::Mass(float m, float radius, Vector3 r, Vector3 v) {
+    this->setM(m);
+    this->radius = radius;
+    this->r = r;
+    this->v = v;
 };
 
-void Mass::setM(float _m) {
-    m = _m;
-    invM = (m != INFINITY ? 1/m : 0.0);
-    type = (m != INFINITY ? MassType::Dynamic : MassType::Static);
+void Mass::setM(float m) {
+    this->m = m;
+    type = MassType::Dynamic;
+}
+
+float Mass::getRadius() {
+    return radius;
 }
 
 void Mass::addForce(Vector3 force) {
@@ -42,8 +40,6 @@ void Mass::resetAcceleration() {
 void Mass::calculate(float dt) {
     if (this->type != MassType::Static)
         eulerStep(dt);
-    
-    checkWalls(dt);
 }
 
 void Mass::eulerStep(float dt) {
@@ -53,70 +49,8 @@ void Mass::eulerStep(float dt) {
     a = { 0, 0, 0 };
 }
 
-void Mass::verletStep(float dt) {
-    if (this->type == MassType::Static)
-        return;
-
-    dr = (r - rt);
-    rt = r;
-    r += dr*(dt/dtt) + a*(dt*dt);
-
-    a = { 0, 0, 0 };
-}
-
 void Mass::move(Vector3 d) {
     r += d;
-}
-
-void Mass::checkWalls(float dt) {
-    const float kn = 0.9;
-    const float k = 0.95;
-
-    const float d = 3;
-    
-    float yb = -d;
-    if (r.y < yb) {
-        v.y = -v.y*kn;
-        v *= k;
-        r.y = yb;
-    }
-    
-    yb = d;
-    if (r.y > yb) {
-        v.y = -v.y*kn;
-        v *= k;
-        r.y = yb;
-    }
-    
-    float xb = -d;
-    if (r.x < xb) {
-        v.x = -v.x*kn;
-        v *= k;
-        r.x = xb;
-    }
-    
-    xb = d;
-    if (r.x > xb) {
-        v.x = -v.x*kn;
-        v *= k;
-        r.x = xb;
-    }
-    
-    float zb = -d;
-    if (r.z < zb) {
-        v.z = -v.z*kn;
-        v *= k;
-        r.z = zb;
-    }
-    
-    zb = d;
-    if (r.z > zb) {
-        v.z = -v.z*kn;
-        v *= k;
-        r.z = xb;
-    }
-    
-    v*=0.995;
 }
 
 void Mass::collide(Mass* a, Mass* b) {

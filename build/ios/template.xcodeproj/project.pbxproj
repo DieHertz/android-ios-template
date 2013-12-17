@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3ED341F7185CC90500895572 /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3ED341F5185CC90500895572 /* Vector3.cpp */; };
+		3E364D5D18607720002CAC8A /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E364D5B18607720002CAC8A /* Vector3.cpp */; };
+		3E364D601860778E002CAC8A /* MathFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E364D5E1860778E002CAC8A /* MathFunctions.cpp */; };
 		3ED341FA185CD5E200895572 /* Mass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3ED341F8185CD5E200895572 /* Mass.cpp */; };
 		3ED341FD185CDD8F00895572 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3ED341FB185CDD8F00895572 /* World.cpp */; };
 		569CCF0E17E6F5050003F210 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 569CCF0C17E6F5050003F210 /* Timer.cpp */; };
@@ -34,8 +35,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3ED341F5185CC90500895572 /* Vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector3.cpp; path = physics/Vector3.cpp; sourceTree = "<group>"; };
-		3ED341F6185CC90500895572 /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector3.h; path = physics/Vector3.h; sourceTree = "<group>"; };
+		3E364D5B18607720002CAC8A /* Vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector3.cpp; path = math/Vector3.cpp; sourceTree = "<group>"; };
+		3E364D5C18607720002CAC8A /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector3.h; path = math/Vector3.h; sourceTree = "<group>"; };
+		3E364D5E1860778E002CAC8A /* MathFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MathFunctions.cpp; path = math/MathFunctions.cpp; sourceTree = "<group>"; };
+		3E364D5F1860778E002CAC8A /* MathFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MathFunctions.h; path = math/MathFunctions.h; sourceTree = "<group>"; };
 		3ED341F8185CD5E200895572 /* Mass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Mass.cpp; path = physics/Mass.cpp; sourceTree = "<group>"; };
 		3ED341F9185CD5E200895572 /* Mass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mass.h; path = physics/Mass.h; sourceTree = "<group>"; };
 		3ED341FB185CDD8F00895572 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = World.cpp; path = physics/World.cpp; sourceTree = "<group>"; };
@@ -103,14 +106,23 @@
 		3E80BC1B185CC567004BF03B /* physics */ = {
 			isa = PBXGroup;
 			children = (
-				3ED341F5185CC90500895572 /* Vector3.cpp */,
-				3ED341F6185CC90500895572 /* Vector3.h */,
 				3ED341F8185CD5E200895572 /* Mass.cpp */,
 				3ED341F9185CD5E200895572 /* Mass.h */,
 				3ED341FB185CDD8F00895572 /* World.cpp */,
 				3ED341FC185CDD8F00895572 /* World.h */,
 			);
 			name = physics;
+			sourceTree = "<group>";
+		};
+		3EA71F4D186075C3004EF1A1 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				3E364D5B18607720002CAC8A /* Vector3.cpp */,
+				3E364D5C18607720002CAC8A /* Vector3.h */,
+				3E364D5E1860778E002CAC8A /* MathFunctions.cpp */,
+				3E364D5F1860778E002CAC8A /* MathFunctions.h */,
+			);
+			name = Math;
 			sourceTree = "<group>";
 		};
 		D625797716C403CD008C223F = {
@@ -180,6 +192,7 @@
 		D66DBA2D17E5DD8B00C12B9C /* common */ = {
 			isa = PBXGroup;
 			children = (
+				3EA71F4D186075C3004EF1A1 /* Math */,
 				3E80BC1B185CC567004BF03B /* physics */,
 				569CCF0C17E6F5050003F210 /* Timer.cpp */,
 				569CCF0D17E6F5050003F210 /* Timer.h */,
@@ -294,9 +307,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D66DBA3817E5DD8B00C12B9C /* Application.cpp in Sources */,
+				3E364D5D18607720002CAC8A /* Vector3.cpp in Sources */,
 				D66DBA3917E5DD8B00C12B9C /* GlHelper.cpp in Sources */,
+				3E364D601860778E002CAC8A /* MathFunctions.cpp in Sources */,
 				D66DBA3A17E5DD8B00C12B9C /* TouchEvent.cpp in Sources */,
-				3ED341F7185CC90500895572 /* Vector3.cpp in Sources */,
 				D6B1967817E5F94B0044515C /* AppDelegate.mm in Sources */,
 				D6B1967917E5F94B0044515C /* GLView.mm in Sources */,
 				D6B1967A17E5F94B0044515C /* main.m in Sources */,
