@@ -1,11 +1,3 @@
-//
-//  Mass.h
-//  template
-//
-//  Created by Alexander Pavlov on 14.12.13.
-//  Copyright (c) 2013 SachsHome. All rights reserved.
-//
-
 #ifndef __template__Mass__
 #define __template__Mass__
 
@@ -48,4 +40,4 @@ private:
     Vector3 f;
 };
 
-#endif /* defined(__template__Mass__) */
+#endif /* __template__Mass__ */

@@ -1,11 +1,3 @@
-//
-//  Vector3.h
-//  template
-//
-//  Created by Alexander Pavlov on 14.12.13.
-//  Copyright (c) 2013 SachsHome. All rights reserved.
-//
-
 #ifndef __template__Vector3__
 #define __template__Vector3__
 
@@ -36,4 +28,4 @@ public:
 };
 
 
-#endif /* defined(__template__Vector3__) */
+#endif /* __template__Vector3__ */

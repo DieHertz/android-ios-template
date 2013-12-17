@@ -1,11 +1,3 @@
-//
-//  World.h
-//  template
-//
-//  Created by Alexander Pavlov on 14.12.13.
-//  Copyright (c) 2013 SachsHome. All rights reserved.
-//
-
 #ifndef __template__World__
 #define __template__World__
 
@@ -34,4 +26,4 @@ private:
     Vector3 boundaryMax;
 };
 
-#endif /* defined(__template__World__) */
+#endif /* __template__World__ */
