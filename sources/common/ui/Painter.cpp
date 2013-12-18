@@ -71,15 +71,20 @@ void Painter::drawRect(const Rect& r, const Color& c) {
     glDisableVertexAttribArray(positionLoc);
 }
 
+void Painter::setRootTransform(const Rect& r) {
+    clearTransformStack();
+    _transformStack.push(glm::ortho(static_cast<float>(r.x), static_cast<float>(r.x + r.w),
+        static_cast<float>(r.y + r.h), static_cast<float>(r.y),
+        -1.0f, 1.0f));
+}
+
 void Painter::clearTransformStack() {
     decltype(_transformStack) dump;
     _transformStack.swap(dump);
 }
 
-void Painter::pushTransform(const Rect& r) {
-    _transformStack.push(glm::ortho(static_cast<float>(r.x), static_cast<float>(r.x + r.w),
-        static_cast<float>(r.y + r.h), static_cast<float>(r.y),
-        -1.0f, 1.0f));
+void Painter::pushTransform(const Point& p) {
+    _transformStack.push(glm::translate(_transformStack.top(), glm::vec3(p.x, p.y, 0)));
 }
 
 void Painter::popTransform() {

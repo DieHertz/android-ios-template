@@ -13,14 +13,27 @@
 
 void Template::onCreate() {
     widgetOne.setGeometry({ 0, 0, 150, 100 });
+    widgetOne.setColor({ 0.5f, 0.75f, 0.3f, 1 });
+
     widgetTwo.setGeometry({ 0, 200, 50, 50 });
-    widgetThree.setGeometry({ 200, 400, 150, 100 });
+    widgetTwo.setColor({ 1, 1, 1, 1 });
+
+    widgetThree.setGeometry({ 100, 100, 300, 300 });
+    widgetThree.setColor({ 0.1f, 0.55f, 0.75f, 0.6f });
+
+    auto childWidget = new Widget(&widgetThree);
+    childWidget->setGeometry({ 50, 50, 200, 200 });
+    childWidget->setColor({ 1, 0, 0, 0.3f });
+
+    auto childChildWidget = new Widget(childWidget);
+    childChildWidget->setGeometry({ 50, 50, 100, 100 });
+    childChildWidget->setColor({ 0, 0.8f, 0.2f, 1 });
 }
 
 void Template::onContextCreated() {
     Log::info("%s: %s", __FUNCTION__, glGetString(GL_VERSION));
 
-    const char* vShaderSrc = glsl(
+    const auto vShaderSrc = glsl(
         attribute vec3 aPosition;
 
         uniform mat4 uModelViewProjection;
@@ -34,7 +47,7 @@ void Template::onContextCreated() {
         }
     );
 
-    const char* fShaderSrc = glsl(
+    const auto fShaderSrc = glsl(
         precision mediump float;
 
         varying float depth;
@@ -45,9 +58,6 @@ void Template::onContextCreated() {
     );
 
     mProgram = std::unique_ptr<ShaderProgram>(new ShaderProgram(vShaderSrc, fShaderSrc));
-
-    RenderDevice::clearColor(0, 0, 0, 1);
-    glEnable(GL_DEPTH_TEST);
 
     createScene();
 }
@@ -110,6 +120,7 @@ void Template::onUpdate(const float delta) {
 
 void Template::onDraw() {
     RenderDevice::clear();
+    glEnable(GL_DEPTH_TEST);
 
     RenderDevice::begin(mProgram.get());
 

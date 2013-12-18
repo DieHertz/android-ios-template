@@ -438,6 +438,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "template-Prefix.pch";
 				GCC_WARN_PEDANTIC = YES;
+				HEADER_SEARCH_PATHS = ../../sources/common;
 				INFOPLIST_FILE = "template-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-I../../sources/common";
@@ -461,6 +462,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "template-Prefix.pch";
 				GCC_WARN_PEDANTIC = YES;
+				HEADER_SEARCH_PATHS = ../../sources/common;
 				INFOPLIST_FILE = "template-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-I../../sources/common";

@@ -3,6 +3,7 @@
 
 #include "Rect.h"
 #include "Color.h"
+#include "Point.h"
 #include "ShaderProgram.h"
 
 #include <glm/glm.hpp>
@@ -15,8 +16,9 @@ public:
 
     void drawRect(const Rect& r, const Color& c);
 
+    void setRootTransform(const Rect& r);
     void clearTransformStack();
-    void pushTransform(const Rect& r);
+    void pushTransform(const Point& p);
     void popTransform();
 
 private:

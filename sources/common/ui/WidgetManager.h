@@ -4,6 +4,7 @@
 #include "Painter.h"
 
 #include <set>
+#include <list>
 #include <memory>
 
 class TouchEvent;
@@ -30,6 +31,7 @@ public:
     }
 
 private:
+    std::list<Widget*> _topLevelWidgets;
     std::set<Widget*> _widgets;
     std::unique_ptr<Painter> _painter;
 };
