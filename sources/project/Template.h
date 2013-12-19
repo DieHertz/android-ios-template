@@ -12,8 +12,6 @@
 #include <ShaderProgram.h>
 #include <ui/Widget.h>
 
-#include <glm/gtc/matrix_transform.hpp>
-
 #include <memory>
 #include <vector>
 
