@@ -6,6 +6,10 @@
 #include <RenderDevice.h>
 #include <Log.h>
 #include <TouchEvent.h>
+
+#include <math/Vector4.h>
+#include <math/Matrix4.h>
+#include <math/MathFunctions.h>
 #include <physics/Mass.h>
 #include <physics/World.h>
 
@@ -160,21 +164,21 @@ void Template::onTouch(TouchEvent& event) {
 }
 
 void Template::up(const float degrees) {
-    glm::vec3 ortho { glm::normalize(glm::cross(mEye, mUp)) };
-    glm::vec4 eye4(mEye, 1.0f);
-    glm::vec4 up4(mUp, 1.0f);
+    Vector3 ortho { Math::cross(mEye, mUp).n() };
+    Vector4 eye4(mEye, 1.0f);
+    Vector4 up4(mUp, 1.0f);
+    
+    eye4 = eye4 * Math::rotate(Matrix4(), degrees, ortho);
+    up4 = up4 * Math::rotate(Matrix4(), degrees, ortho);
 
-    eye4 = eye4 * glm::rotate(glm::mat4(), degrees, ortho);
-    up4 = up4 * glm::rotate(glm::mat4(), degrees, ortho);
-
-    mEye = glm::vec3(eye4);
-    mUp = glm::vec3(up4);
+    mEye = Vector3(eye4);
+    mUp = Vector3(up4);
 }
 
 void Template::left(const float degrees) {
-    glm::vec4 eye4 {
-        glm::vec4(mEye, 1.0f) * glm::rotate(glm::mat4(), degrees, mUp)
+    Vector4 eye4 {
+        Vector4(mEye, 1.0f) * Math::rotate(Matrix4(), degrees, Vector3(mUp))
     };
-
-    mEye = glm::vec3(eye4);
+    
+    mEye = Vector3(eye4);
 }

@@ -4,7 +4,9 @@
 #include "Geometry.h"
 #include "SceneObject.h"
 #include "Shape.h"
-#include "physics/World.h"
+
+#include <math/Vector3.h>
+#include <physics/World.h>
 
 #include <Application.h>
 #include <ShaderProgram.h>
@@ -36,9 +38,9 @@ private:
 
     float mX;
     float mY;
-
-    glm::vec3 mEye = glm::vec3(0, 0, 0.5f);
-    glm::vec3 mUp = glm::vec3(0, 1.0f, 0);
+    
+    Vector3 mEye = Vector3(0, 0, 0.5);
+    Vector3 mUp = Vector3(0, 1, 0);
 
     float mTimer = 0;
 

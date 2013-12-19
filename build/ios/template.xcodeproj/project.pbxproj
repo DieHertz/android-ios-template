@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3E364D5D18607720002CAC8A /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E364D5B18607720002CAC8A /* Vector3.cpp */; };
 		3E364D601860778E002CAC8A /* MathFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E364D5E1860778E002CAC8A /* MathFunctions.cpp */; };
+		3E4EE3991862F10700ADC7AB /* Matrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4EE3971862F10700ADC7AB /* Matrix4.cpp */; };
+		3E4EE39C1863023500ADC7AB /* Vector4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4EE39A1863023500ADC7AB /* Vector4.cpp */; };
 		3E5F7B6D1860D4DC00B895A2 /* Painter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F7B671860D4DC00B895A2 /* Painter.cpp */; };
 		3E5F7B6E1860D4DC00B895A2 /* Widget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F7B691860D4DC00B895A2 /* Widget.cpp */; };
 		3E5F7B6F1860D4DC00B895A2 /* WidgetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F7B6B1860D4DC00B895A2 /* WidgetManager.cpp */; };
@@ -42,6 +44,10 @@
 		3E364D5C18607720002CAC8A /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector3.h; path = math/Vector3.h; sourceTree = "<group>"; };
 		3E364D5E1860778E002CAC8A /* MathFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MathFunctions.cpp; path = math/MathFunctions.cpp; sourceTree = "<group>"; };
 		3E364D5F1860778E002CAC8A /* MathFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MathFunctions.h; path = math/MathFunctions.h; sourceTree = "<group>"; };
+		3E4EE3971862F10700ADC7AB /* Matrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Matrix4.cpp; path = math/Matrix4.cpp; sourceTree = "<group>"; };
+		3E4EE3981862F10700ADC7AB /* Matrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Matrix4.h; path = math/Matrix4.h; sourceTree = "<group>"; };
+		3E4EE39A1863023500ADC7AB /* Vector4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector4.cpp; path = math/Vector4.cpp; sourceTree = "<group>"; };
+		3E4EE39B1863023500ADC7AB /* Vector4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector4.h; path = math/Vector4.h; sourceTree = "<group>"; };
 		3E5F7B631860D4DC00B895A2 /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
 		3E5F7B641860D4DC00B895A2 /* Rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rect.h; sourceTree = "<group>"; };
 		3E5F7B651860D4DC00B895A2 /* Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Size.h; sourceTree = "<group>"; };
@@ -146,6 +152,10 @@
 				3E364D5C18607720002CAC8A /* Vector3.h */,
 				3E364D5E1860778E002CAC8A /* MathFunctions.cpp */,
 				3E364D5F1860778E002CAC8A /* MathFunctions.h */,
+				3E4EE3971862F10700ADC7AB /* Matrix4.cpp */,
+				3E4EE3981862F10700ADC7AB /* Matrix4.h */,
+				3E4EE39A1863023500ADC7AB /* Vector4.cpp */,
+				3E4EE39B1863023500ADC7AB /* Vector4.h */,
 			);
 			name = Math;
 			sourceTree = "<group>";
@@ -342,8 +352,10 @@
 				D66DBA3A17E5DD8B00C12B9C /* TouchEvent.cpp in Sources */,
 				D6B1967817E5F94B0044515C /* AppDelegate.mm in Sources */,
 				D6B1967917E5F94B0044515C /* GLView.mm in Sources */,
+				3E4EE39C1863023500ADC7AB /* Vector4.cpp in Sources */,
 				D6B1967A17E5F94B0044515C /* main.m in Sources */,
 				D6B1967B17E5F94B0044515C /* ViewController.m in Sources */,
+				3E4EE3991862F10700ADC7AB /* Matrix4.cpp in Sources */,
 				3E5F7B6E1860D4DC00B895A2 /* Widget.cpp in Sources */,
 				D6B4398A17E601DD00A82721 /* ShaderProgram.cpp in Sources */,
 				3E5F7B6D1860D4DC00B895A2 /* Painter.cpp in Sources */,
