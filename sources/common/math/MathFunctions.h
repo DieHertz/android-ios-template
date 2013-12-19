@@ -12,6 +12,8 @@ namespace Math {
         return std::max(lb, std::min(ub, value));
     }
     
+    float rnd(const float from, const float to);
+    
     float radians(const float degrees);
     float degrees(const float radians);
     

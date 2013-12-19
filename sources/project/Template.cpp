@@ -13,8 +13,6 @@
 #include <physics/Mass.h>
 #include <physics/World.h>
 
-#include <random>
-
 void Template::onCreate() {
     widgetOne.setGeometry({ 0, 0, 150, 100 });
     widgetOne.setColor({ 0.5f, 0.75f, 0.3f, 1 });
@@ -72,14 +70,8 @@ void Template::createScene() {
     const int objectsCount = 20;
     const float radius = 0.5f;
 
-    auto rnd = [] (const float from, const float to) {
-        std::random_device device;
-        std::uniform_real_distribution<float> distr(from, to);
-        return distr(device);
-    };
-
     for (int i = 0; i < objectsCount; ++i) {
-        Vector3 randomPos = { rnd(-2, 2), rnd(-2, 2), rnd(-2, 2) };
+        Vector3 randomPos = { Math::rnd(-2, 2), Math::rnd(-2, 2), Math::rnd(-2, 2) };
         
         auto mass = new Mass(1, radius, randomPos, { 0, 0, 0 });
         mWorld->addMass(mass);

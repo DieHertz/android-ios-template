@@ -1,5 +1,6 @@
 #include "MathFunctions.h"
 #include <cmath>
+#include <random>
 
 namespace Math {
     Vector3 cross(const Vector3& a, const Vector3& b) {
@@ -7,6 +8,12 @@ namespace Math {
             a.z * b.x - b.z * a.x,
             a.x * b.y - b.x * a.y};
     }
+    
+    float rnd(const float from, const float to) {
+        std::random_device device;
+        std::uniform_real_distribution<float> distr(from, to);
+        return distr(device);
+    };
     
     float radians(const float degrees) {
         return degrees * M_PI / 180;
