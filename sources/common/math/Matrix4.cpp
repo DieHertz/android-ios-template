@@ -2,8 +2,8 @@
 #include <stdio.h>
 
 Matrix4 Matrix4::operator*(const Matrix4& rhs) const {
-	std::array<float, 16> c;
-    
+    std::array<float, 16> c;
+
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
             c[i + j*4] = 0;
@@ -12,5 +12,5 @@ Matrix4 Matrix4::operator*(const Matrix4& rhs) const {
         }
     }
     
-    return Matrix4(c);
+    return c;
 }
