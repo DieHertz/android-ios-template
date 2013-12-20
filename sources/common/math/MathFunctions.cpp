@@ -4,9 +4,11 @@
 
 namespace Math {
     Vector3 cross(const Vector3& a, const Vector3& b) {
-        return {a.y * b.z - b.y * a.z,
+        return {
+            a.y * b.z - b.y * a.z,
             a.z * b.x - b.z * a.x,
-            a.x * b.y - b.x * a.y};
+            a.x * b.y - b.x * a.y
+        };
     }
     
     float rnd(const float from, const float to) {
@@ -39,6 +41,6 @@ namespace Math {
             0,                      0,                      0,                      1
         };
 
-        return m*r;
+        return m * r;
     }
 }

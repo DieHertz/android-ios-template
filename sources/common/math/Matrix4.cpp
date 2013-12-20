@@ -1,5 +1,4 @@
 #include "Matrix4.h"
-#include <stdio.h>
 
 Matrix4 Matrix4::operator*(const Matrix4& rhs) const {
     std::array<float, 16> c;
